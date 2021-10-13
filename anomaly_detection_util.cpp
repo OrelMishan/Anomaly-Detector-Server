@@ -18,7 +18,7 @@ float expectation(float *x, int size) {
 float var(float *x, int size) {
     if( size == 0){
         cout << "can't divide by zero";
-        retunr 0;
+        return 0;
         /// exit???
     }
     int result = 0;
@@ -69,4 +69,8 @@ float dev(Point p,Line l){
     float onLine = l.f(p.x);
     return(fabs(p.y-onLine));
 
+}
+
+int main(){
+    return 1;
 }
