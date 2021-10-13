@@ -3,7 +3,11 @@
 //
 #include <math.h>
 
-float average(float *x, int size) {
+float expectation(float *x, int size) {
+    if( size == 0){
+        cout << "can't divide";
+        retunr 0;
+    }
     int sum = 0;
     for (int i = 0; i < size; i++) {
         sum += x[i];
@@ -12,12 +16,17 @@ float average(float *x, int size) {
 }
 
 float var(float *x, int size) {
+    if( size == 0){
+        cout << "can't divide";
+        retunr 0;
+    }
     int result = 0;
     for (int i = 0; i < size; i++) {
+        // each parameter is in pow.
         result += (powf(x[i], 2));
     }
     result /= (float) size;
-    float expected = average(x, size);
+    float expected = expectation(x, size);
     return result - (pow(expected, 2));
 }
 
@@ -26,7 +35,7 @@ float cov(float *x, float *y, int size) {
     for (int i = 0; i < size; i++) {
         multy[i] = x[i] * y[i];
     }
-    return evarage(multy, size) - (evarage(x, size) * evarage(y, size));
+    return expectation(multy, size) - (expectation(x, size) * expectation(y, size));
 }
 
 float pearson(float *x, float *y, int size) {
@@ -43,8 +52,8 @@ Line linear_reg(Point **points, int size) {
         y[i] = points[i].y;
     }
     float a = cov(x, y, size) / var(x, size);
-    float averageX = average(x, size);
-    float averageY = average(y, size);
+    float averageX = expectation(x, size);
+    float averageY = expectation(y, size);
     float b = averageY - (a * averageX);
     return Line(a, b);
 }
