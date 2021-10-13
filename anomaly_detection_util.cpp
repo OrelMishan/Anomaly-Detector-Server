@@ -1,6 +1,4 @@
-//
-// Created by אוראל משען on 13/10/2021.
-//
+
 #include <math.h>
 #include <anomaly_detection_util.h>
 
