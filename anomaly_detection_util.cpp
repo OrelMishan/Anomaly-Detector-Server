@@ -2,6 +2,8 @@
 // Created by אוראל משען on 13/10/2021.
 //
 #include <math.h>
+#include <anomaly_detection_util.h>
+
 
 float expectation(float *x, int size) {
     if( size == 0){
@@ -19,6 +21,7 @@ float var(float *x, int size) {
     if( size == 0){
         cout << "can't divide";
         retunr 0;
+        /// exit???
     }
     int result = 0;
     for (int i = 0; i < size; i++) {
@@ -51,6 +54,7 @@ Line linear_reg(Point **points, int size) {
         x[i] = points[i].x;
         y[i] = points[i].y;
     }
+    /// find what happened if the line is parallel
     float a = cov(x, y, size) / var(x, size);
     float averageX = expectation(x, size);
     float averageY = expectation(y, size);
@@ -63,4 +67,8 @@ float dev(Point p,Point** points, int size){
     return dev(p,line);
 }
 float dev(Point p,Line l){
+    // find the parallel x point on the line.
+    float onLine = l.f(p.x);
+    return(fabs(p.y-onLine));
+
 }

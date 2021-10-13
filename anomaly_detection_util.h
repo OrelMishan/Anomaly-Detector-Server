@@ -19,10 +19,12 @@ public:
         return a*x+b;
     }
 };
-class Point{
+class Point {
 public:
-    float x,y;
-    Point(float x, float y):x(x),y(x){}
+    float x, y;
+    Point(float x, float y) : x(x), y(x) {}
+}
+
 };
 // performs a linear regression and return s the line equation
 Line linear_reg(Point** points, int size);
