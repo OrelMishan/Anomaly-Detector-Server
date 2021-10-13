@@ -5,7 +5,7 @@
 
 float expectation(float *x, int size) {
     if( size == 0){
-        cout << "can't divide";
+        cout << "can't divide by zero";
         retunr 0;
     }
     int sum = 0;
@@ -17,7 +17,7 @@ float expectation(float *x, int size) {
 
 float var(float *x, int size) {
     if( size == 0){
-        cout << "can't divide";
+        cout << "can't divide by zero";
         retunr 0;
         /// exit???
     }
