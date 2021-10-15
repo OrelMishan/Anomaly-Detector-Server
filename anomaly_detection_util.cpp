@@ -35,6 +35,7 @@ float var(float *x, int size) {
     float expected = expectation(x, size);
     return result - (pow(expected, (float) 2));
 }
+
 /**
  * @param x is a pointer to the first sample.
  * @param y is a pointer to the second sample.
@@ -66,6 +67,7 @@ float pearson(float *x, float *y, int size) {
     float sqrtY = sqrtf(varY);
     return coverage / (sqrtX * sqrtY);
 }
+
 /**
  *
  * @param points is pointer to array of pints that represent the x and y values of the sample.
@@ -86,7 +88,7 @@ Line linear_reg(Point **points, int size) {
     float averageX = expectation(x, size);
     float averageY = expectation(y, size);
     float b = averageY - (a * averageX);
-    return {a, b};
+    return Line(a, b);
 }
 
 /**
@@ -99,6 +101,7 @@ float dev(Point p, Point **points, int size) {
     Line line = linear_reg(points, size);
     return dev(p, line);
 }
+
 /**
  * @param p is the point that need to find her deviation.
  * @param l is the linear regression.
