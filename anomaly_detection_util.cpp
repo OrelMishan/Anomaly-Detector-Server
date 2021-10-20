@@ -1,4 +1,5 @@
 #include <cmath>
+#include <iostream>
 #include "anomaly_detection_util.h"
 
 /**
@@ -8,7 +9,7 @@
  */
 float expectation(float *x, int size) {
     if (size == 0) {
-        throw "can't divide by zero";
+        throw std ::invalid_argument("can't divide by zero");
     }
     float sum = 0;
     for (int i = 0; i < size; i++) {
@@ -24,7 +25,7 @@ float expectation(float *x, int size) {
  */
 float var(float *x, int size) {
     if (size == 0) {
-        throw "can't divide by zero";
+        throw std ::invalid_argument("can't divide by zero");
     }
     float result = 0;
     for (int i = 0; i < size; i++) {
@@ -32,6 +33,7 @@ float var(float *x, int size) {
         result += (powf(x[i], 2));
     }
     result /= (float) size;
+
     float expected = expectation(x, size);
     return result - (pow(expected, (float) 2));
 }
