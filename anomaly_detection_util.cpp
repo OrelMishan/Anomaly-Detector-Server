@@ -1,3 +1,6 @@
+//Name: Noam Tzuberi ID:313374837
+//Name: Orel Mishan ID:316551092
+
 #include <cmath>
 #include <iostream>
 #include "anomaly_detection_util.h"
@@ -9,7 +12,7 @@
  */
 float expectation(float *x, int size) {
     if (size == 0) {
-        throw std ::invalid_argument("can't divide by zero");
+        throw std::invalid_argument("can't divide by zero");
     }
     float sum = 0;
     for (int i = 0; i < size; i++) {
@@ -25,7 +28,7 @@ float expectation(float *x, int size) {
  */
 float var(float *x, int size) {
     if (size == 0) {
-        throw std ::invalid_argument("can't divide by zero");
+        throw std::invalid_argument("can't divide by zero");
     }
     float result = 0;
     for (int i = 0; i < size; i++) {
@@ -63,7 +66,7 @@ float pearson(float *x, float *y, int size) {
     float varX = var(x, size);
     float varY = var(y, size);
     if (varX <= 0 || varY <= 0) {
-        throw "no defined";
+        throw std::logic_error("no defined");
     }
     float sqrtX = sqrtf(varX);
     float sqrtY = sqrtf(varY);
@@ -84,7 +87,7 @@ Line linear_reg(Point **points, int size) {
     }
     float varX = var(x, size);
     if (varX == 0) {
-        throw "no defined";
+        throw std::logic_error("no defined");
     }
     float a = cov(x, y, size) / varX;
     float averageX = expectation(x, size);
@@ -104,6 +107,12 @@ float dev(Point p, Point **points, int size) {
     return dev(p, line);
 }
 
+void absFloat(float *num) {
+    if (*num < 0) {
+        *num *= -1;
+    }
+}
+
 /**
  * @param p is the point that need to find her deviation.
  * @param l is the linear regression.
@@ -112,6 +121,8 @@ float dev(Point p, Point **points, int size) {
 float dev(Point p, Line l) {
     // find the parallel x point on the line.
     float onLine = l.f(p.x);
-    return (fabs(p.y - onLine));
+    float result = p.y - onLine;
+    absFloat(&result);
+    return result;
 
 }
