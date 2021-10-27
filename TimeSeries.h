@@ -6,9 +6,4 @@
 #define ASS1_TIMESERIES_H
 
 
-class TimeSeries {
-
-};
-
-
 #endif //ASS1_TIMESERIES_H
