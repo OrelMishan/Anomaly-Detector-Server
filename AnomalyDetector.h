@@ -4,7 +4,9 @@
 
 #ifndef ASS1_ANOMALYDETECTOR_H
 #define ASS1_ANOMALYDETECTOR_H
-class TimeSeries{ /*...*/};
+class TimeSeries{
+
+};
 class AnomalyReport{
 public:
     const string description;

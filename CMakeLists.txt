@@ -7,4 +7,5 @@ include_directories(.)
 
 add_executable(ass1
         anomaly_detection_util.cpp
-        anomaly_detection_util.h)
+        anomaly_detection_util.h
+        TimeSeries.cpp)
