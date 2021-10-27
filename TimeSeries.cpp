@@ -2,8 +2,7 @@
 #include<sstream>
 #include <map>
 #include <vector>
-
-
+#include <iostream>
 
 
 class TimeSeries {
@@ -30,13 +29,12 @@ class TimeSeries {
         }
     }
 public:
-    explicit TimeSeries(const std::string& path) {
+     TimeSeries(const std::string& path) {
         // define file, line
         std::ifstream fin;
         std::string line, tmp;
         // open the reading file
         fin.open(path);
-        int i = 0;
         // put the keys in the map
         if (!fin.eof()) {
             fin >> line;
@@ -49,8 +47,19 @@ public:
 
             }
         }
+    void printTable() {
+        for (auto & it : table) {
+            std:: cout << it.first << ":" ;
+        }
+    }
 
-    };
+
+
+};
+int main(int argc,char** argv) {
+    TimeSeries t = *new TimeSeries(argv[0]);
+    t.printTable();
+}
 
 
 
