@@ -1,11 +1,9 @@
-#include <iostream>
+#include <fstream>
+#include<sstream>
 #include <map>
 #include <vector>
-#include <fstream>
-#include<iostream>
-#include<vector>
-#include<sstream>
-#include "TimeSeries.h"
+
+
 
 
 class TimeSeries {
@@ -14,7 +12,7 @@ class TimeSeries {
 
     void putKeys(std::string line) {
         std::string tmp;
-        size_t counter = 0;
+        size_t counter;
         while ((counter = line.find(',') != std::string::npos)) {
             tmp = line.substr(0, counter);
             table[tmp] = {};
@@ -23,26 +21,28 @@ class TimeSeries {
     }
     void putValues(std::string line){
             std::string tmp;
-            size_t counter = 0;
-            for (auto it = table.begin(); it != table.end(); ++it) {
+            size_t counter;
+            for (auto & it : table) {
                 counter = line.find(',');
                 tmp = line.substr(0, counter);
-                it->second.push_back(std::stof(tmp));
+                it.second.push_back(std::stof(tmp));
                 line.erase(0, counter + 1);
         }
     }
 public:
-    TimeSeries(std::string path) {
-        // cre
+    explicit TimeSeries(const std::string& path) {
+        // define file, line
         std::ifstream fin;
         std::string line, tmp;
-        std::string comma = ",";
+        // open the reading file
         fin.open(path);
         int i = 0;
+        // put the keys in the map
         if (!fin.eof()) {
             fin >> line;
             putKeys(line);
         }
+        // put the values in the map
         while (!fin.eof()) {
             fin >> line;
             putValues(line);
