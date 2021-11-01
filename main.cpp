@@ -6,7 +6,7 @@
 
 int main(int argc,char** argv) {
     TimeSeries *t = new TimeSeries("C:\\Users\\Public\\ass1\\test_time_series.csv");
-    t->print();
+    t->printTable();
 }
 
 

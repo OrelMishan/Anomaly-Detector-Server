@@ -9,4 +9,5 @@ add_executable(ass1
         main.cpp
         anomaly_detection_util.cpp
         anomaly_detection_util.h
-        TimeSeries.cpp)
+        TimeSeries.cpp
+        TimeSeries.h)

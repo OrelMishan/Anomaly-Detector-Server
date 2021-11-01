@@ -1,14 +1,11 @@
 #include <fstream>
-#include<sstream>
-#include <map>
 #include <vector>
 #include <iostream>
 #include "TimeSeries.h"
 
 
-     std::vector<std::vector<std::string>> table;
 
-    void putKeys(std::string line) {
+    void TimeSeries::putKeys(std::string line) {
         std::string tmp;
         size_t counter;
         while ((counter = line.find(',') )!= std::string::npos) {
@@ -25,7 +22,7 @@
 
     }
 
-    void putValues(std::string line) {
+    void TimeSeries::putValues(std::string line) {
         std::string tmp;
         size_t counter;
         for (auto &it: table) {
@@ -56,7 +53,7 @@
         }
         fin.close();
     }
-    void printTable(){
+    void TimeSeries::printTable(){
         int sizeVector= table.at(1).size();
         for(int i =0; i<sizeVector;i++){
             for(auto &it: table){
@@ -65,8 +62,6 @@
             std::cout<<std::endl;
         }
     }
-
-};
 
 
 
