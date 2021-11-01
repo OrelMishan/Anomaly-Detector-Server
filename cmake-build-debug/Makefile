@@ -118,6 +118,30 @@ ass1\fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\ass1.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ass1.dir\build
 .PHONY : ass1\fast
 
+TimeSeries.obj: TimeSeries.cpp.obj
+.PHONY : TimeSeries.obj
+
+# target to build an object file
+TimeSeries.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ass1.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ass1.dir\TimeSeries.cpp.obj
+.PHONY : TimeSeries.cpp.obj
+
+TimeSeries.i: TimeSeries.cpp.i
+.PHONY : TimeSeries.i
+
+# target to preprocess a source file
+TimeSeries.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ass1.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ass1.dir\TimeSeries.cpp.i
+.PHONY : TimeSeries.cpp.i
+
+TimeSeries.s: TimeSeries.cpp.s
+.PHONY : TimeSeries.s
+
+# target to generate assembly for a file
+TimeSeries.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ass1.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ass1.dir\TimeSeries.cpp.s
+.PHONY : TimeSeries.cpp.s
+
 anomaly_detection_util.obj: anomaly_detection_util.cpp.obj
 .PHONY : anomaly_detection_util.obj
 
@@ -151,6 +175,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... ass1
+	@echo ... TimeSeries.obj
+	@echo ... TimeSeries.i
+	@echo ... TimeSeries.s
 	@echo ... anomaly_detection_util.obj
 	@echo ... anomaly_detection_util.i
 	@echo ... anomaly_detection_util.s
