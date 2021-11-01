@@ -6,60 +6,68 @@
 
 
 class TimeSeries {
-
-    std::map<std::string, std::vector<float>> table;
+     std::vector<std::vector<std::string>> table;
 
     void putKeys(std::string line) {
         std::string tmp;
         size_t counter;
-        while ((counter = line.find(',') != std::string::npos)) {
+        while ((counter = line.find(',') )!= std::string::npos) {
             tmp = line.substr(0, counter);
-            table[tmp] = {};
+            std::vector<std::string> toAdd;
+            toAdd.push_back(tmp);
+            table.push_back(toAdd) ;
             line.erase(0, counter + 1);
         }
+        std::vector<std::string> toAdd;
+        toAdd.push_back(line);
+        table.push_back(toAdd) ;
+
+
     }
-    void putValues(std::string line){
-            std::string tmp;
-            size_t counter;
-            for (auto & it : table) {
-                counter = line.find(',');
-                tmp = line.substr(0, counter);
-                it.second.push_back(std::stof(tmp));
-                line.erase(0, counter + 1);
+
+    void putValues(std::string line) {
+        std::string tmp;
+        size_t counter;
+        for (auto &it: table) {
+            counter = line.find(',');
+            tmp = line.substr(0, counter);
+            it.push_back(tmp);
+            line.erase(0, counter + 1);
         }
+
     }
+
 public:
-     TimeSeries(const std::string& path) {
+    TimeSeries(const std::string &path) {
         // define file, line
         std::ifstream fin;
         std::string line, tmp;
         // open the reading file
         fin.open(path);
+        if (!fin.is_open()){
+            std::cout<<"bad"<<std::endl;
+        }
         // put the keys in the map
-        if (!fin.eof()) {
-            fin >> line;
+        if (std::getline(fin, line)) {
             putKeys(line);
         }
         // put the values in the map
-        while (!fin.eof()) {
-            fin >> line;
+        while (std::getline(fin, line)) {
             putValues(line);
-
-            }
         }
-    void printTable() {
-        for (auto & it : table) {
-            std:: cout << it.first << ":" ;
+        fin.close();
+    }
+    void printTable(){
+        int sizeVector= table.at(1).size();
+        for(int i =0; i<sizeVector;i++){
+            for(auto &it: table){
+                std::cout<<it.at(i)<<":";
+            }
+            std::cout<<std::endl;
         }
     }
 
-
-
 };
-int main(int argc,char** argv) {
-    TimeSeries t = *new TimeSeries(argv[0]);
-    t.printTable();
-}
 
 
 
