@@ -13,5 +13,7 @@ class TimeSeries{
 public:
     explicit TimeSeries(const std::string&);
     void printTable();
+    std::vector<std::vector<std::string>> getTable() const;
+
 };
 #endif //ASS1_TIMESERIES_H
