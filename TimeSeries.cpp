@@ -8,18 +8,17 @@
     void TimeSeries::putKeys(std::string line) {
         std::string tmp;
         size_t counter;
-        while ((counter = line.find(',') )!= std::string::npos) {
+        while (line.length()!= 0) {
+            counter = line.find(',');
             tmp = line.substr(0, counter);
             std::vector<std::string> toAdd;
             toAdd.push_back(tmp);
             table.push_back(toAdd) ;
+            if (counter==std::string::npos){
+                counter = line.length()-1;
+            }
             line.erase(0, counter + 1);
         }
-        std::vector<std::string> toAdd;
-        toAdd.push_back(line);
-        table.push_back(toAdd) ;
-
-
     }
 
     void TimeSeries::putValues(std::string line) {
