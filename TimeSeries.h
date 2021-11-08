@@ -14,6 +14,9 @@ public:
     explicit TimeSeries(const std::string&);
     void printTable();
     std::vector<std::vector<std::string>> getTable() const;
-
+    float **getFloatArrays();
+    int getNumOfValues();
 };
+
+
 #endif //ASS1_TIMESERIES_H

@@ -1,49 +1,42 @@
 #include "AnomalyDetector.h"
 #include "SimpleAnomalyDetection.h"
 
-float *phraseToFloat(std::vector<std::string> vec) {
-    float *arr = new float[vec.size() - 1];
-    for (int i = 1; i < vec.size(); i++) {
-        arr[i - 1] = std::stof(vec[1]);
-    }
-    return arr;
-}
-
-Point **points(float *x, float *y) {
-    Point *ptr[sizeof(x)];
-    for (int i = 0; i < sizeof(x); i++) {
+Point **points(float *x, float *y,int size) {
+    Point *ptr[size];
+    for (int i = 0; i < size; i++) {
         ptr[i] = new Point(x[i], y[i]);
     }
 }
 
-correlatedFeatures creatingCorrelationStract(std::vector<std::string> first, std::vector<std::string> sec, int c) {
-    correlatedFeatures a = new correlatedFeatures();
+correlatedFeatures creatingCorrelationStract(float *first, float* sec,int size, int c) {
+    correlatedFeatures a ;
     a.feature1 = first[1];
     a.feature2 = sec[1];
     a.corrlation = c;
-    a.lin_reg = linear_reg(points(phraseToFloat(first), phraseToFloat(sec)), sizeof(first));
+    a.lin_reg = linear_reg(points(first, sec,size), size);
     a.threshold;
     return a;
 
 }
 
 void SimpleAnomalyDetector::learnNormal(TimeSeries &ts) {
-
+    //get floats arrays of the values of ts
+    float **fArr = ts.getFloatArrays();
     // first loop
     for (int i = 0; i < ts.getTable().size(); i++) {
 
         // initializing the corr and the match subject
-        int matcher, corrlation = 0;
-        float *x = phraseToFloat(ts.getTable()[i]);
+        int matcher = 0, corrlation = -1;
+        float *x = fArr[i];
 
         // for loop for the matcher subject
-        for (int j = i; j < ts.getTable().size(); j++) {
+        for (int j = i+1; j < ts.getTable().size(); j++) {
 
             //convert to float****duplicate work
-            float *y = phraseToFloat(ts.getTable()[j]);
+            float *y = fArr[j];
 
             //checking the corralation
-            int tmp = pearson(x, y, sizeof(x));
+            int tmp = pearson(x, y, ts.getNumOfValues());
 
             if (tmp > corrlation) {
                 corrlation = tmp;
@@ -53,7 +46,7 @@ void SimpleAnomalyDetector::learnNormal(TimeSeries &ts) {
 
         // creating the struct
         data.push_back(creatingCorrelationStract
-                               (ts.getTable()[i], ts.getTable()[matcher], corrlation));
+                               (fArr[i], fArr[matcher],ts.getNumOfValues(), corrlation));
     }
 };
 

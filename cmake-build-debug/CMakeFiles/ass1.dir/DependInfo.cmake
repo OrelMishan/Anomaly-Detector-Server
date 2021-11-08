@@ -8,10 +8,10 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "C:/Users/user/CLionProjects/ass1/SimpleAnomalyDetection.cpp" "C:/Users/user/CLionProjects/ass1/cmake-build-debug/CMakeFiles/ass1.dir/SimpleAnomalyDetection.cpp.obj"
-  "C:/Users/user/CLionProjects/ass1/TimeSeries.cpp" "C:/Users/user/CLionProjects/ass1/cmake-build-debug/CMakeFiles/ass1.dir/TimeSeries.cpp.obj"
-  "C:/Users/user/CLionProjects/ass1/anomaly_detection_util.cpp" "C:/Users/user/CLionProjects/ass1/cmake-build-debug/CMakeFiles/ass1.dir/anomaly_detection_util.cpp.obj"
-  "C:/Users/user/CLionProjects/ass1/main.cpp" "C:/Users/user/CLionProjects/ass1/cmake-build-debug/CMakeFiles/ass1.dir/main.cpp.obj"
+  "C:/Users/Public/ass1/SimpleAnomalyDetection.cpp" "C:/Users/Public/ass1/cmake-build-debug/CMakeFiles/ass1.dir/SimpleAnomalyDetection.cpp.obj"
+  "C:/Users/Public/ass1/TimeSeries.cpp" "C:/Users/Public/ass1/cmake-build-debug/CMakeFiles/ass1.dir/TimeSeries.cpp.obj"
+  "C:/Users/Public/ass1/anomaly_detection_util.cpp" "C:/Users/Public/ass1/cmake-build-debug/CMakeFiles/ass1.dir/anomaly_detection_util.cpp.obj"
+  "C:/Users/Public/ass1/main.cpp" "C:/Users/Public/ass1/cmake-build-debug/CMakeFiles/ass1.dir/main.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
