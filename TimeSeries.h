@@ -15,7 +15,7 @@ public:
     void printTable();
     std::vector<std::vector<std::string>> getTable() const;
     float **getFloatArrays();
-    int getNumOfValues();
+    int getNumOfValues() const;
 };
 
 

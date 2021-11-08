@@ -81,7 +81,7 @@ float **TimeSeries::getFloatArrays() {
     return arr;
 }
 
-int TimeSeries::getNumOfValues(){
+int TimeSeries::getNumOfValues() const{
     return table[0].size()-1;
 }
 

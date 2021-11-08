@@ -15,6 +15,7 @@ struct correlatedFeatures{
 };
 class SimpleAnomalyDetector:public TimeSeriesAnomalyDetector{
     std::vector<correlatedFeatures> data;
+    std:: map <std::string,int> nameToNum;
 public:
     SimpleAnomalyDetector();
     virtual ~SimpleAnomalyDetector();
