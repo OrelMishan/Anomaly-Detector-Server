@@ -20,6 +20,7 @@ public:
     virtual ~SimpleAnomalyDetector();
     virtual std::vector<AnomalyReport> detect(const TimeSeries& ts);
     std::vector<correlatedFeatures> getNormalModel();
+
     void learnNormal(TimeSeries &ts);
 };
 
