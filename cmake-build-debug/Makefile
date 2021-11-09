@@ -128,6 +128,30 @@ ass1/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\ass1.dir\build.make CMakeFiles/ass1.dir/build
 .PHONY : ass1/fast
 
+MainTrain.obj: MainTrain.cpp.obj
+.PHONY : MainTrain.obj
+
+# target to build an object file
+MainTrain.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ass1.dir\build.make CMakeFiles/ass1.dir/MainTrain.cpp.obj
+.PHONY : MainTrain.cpp.obj
+
+MainTrain.i: MainTrain.cpp.i
+.PHONY : MainTrain.i
+
+# target to preprocess a source file
+MainTrain.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ass1.dir\build.make CMakeFiles/ass1.dir/MainTrain.cpp.i
+.PHONY : MainTrain.cpp.i
+
+MainTrain.s: MainTrain.cpp.s
+.PHONY : MainTrain.s
+
+# target to generate assembly for a file
+MainTrain.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ass1.dir\build.make CMakeFiles/ass1.dir/MainTrain.cpp.s
+.PHONY : MainTrain.cpp.s
+
 SimpleAnomalyDetection.obj: SimpleAnomalyDetection.cpp.obj
 .PHONY : SimpleAnomalyDetection.obj
 
@@ -200,30 +224,6 @@ anomaly_detection_util.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\ass1.dir\build.make CMakeFiles/ass1.dir/anomaly_detection_util.cpp.s
 .PHONY : anomaly_detection_util.cpp.s
 
-main.obj: main.cpp.obj
-.PHONY : main.obj
-
-# target to build an object file
-main.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ass1.dir\build.make CMakeFiles/ass1.dir/main.cpp.obj
-.PHONY : main.cpp.obj
-
-main.i: main.cpp.i
-.PHONY : main.i
-
-# target to preprocess a source file
-main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ass1.dir\build.make CMakeFiles/ass1.dir/main.cpp.i
-.PHONY : main.cpp.i
-
-main.s: main.cpp.s
-.PHONY : main.s
-
-# target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ass1.dir\build.make CMakeFiles/ass1.dir/main.cpp.s
-.PHONY : main.cpp.s
-
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -233,6 +233,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... ass1
+	@echo ... MainTrain.obj
+	@echo ... MainTrain.i
+	@echo ... MainTrain.s
 	@echo ... SimpleAnomalyDetection.obj
 	@echo ... SimpleAnomalyDetection.i
 	@echo ... SimpleAnomalyDetection.s
@@ -242,9 +245,6 @@ help:
 	@echo ... anomaly_detection_util.obj
 	@echo ... anomaly_detection_util.i
 	@echo ... anomaly_detection_util.s
-	@echo ... main.obj
-	@echo ... main.i
-	@echo ... main.s
 .PHONY : help
 
 

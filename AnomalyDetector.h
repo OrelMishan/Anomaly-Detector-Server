@@ -17,8 +17,8 @@ public:
 class TimeSeriesAnomalyDetector {
 public:
     virtual void learnNormal(const TimeSeries& ts)=0;
-    virtual std::vector<AnomalyReport> detect(const TimeSeries& ts)=0;
-    virtual ~TimeSeriesAnomalyDetector(){}
+  //  virtual std::vector<AnomalyReport> detect(const TimeSeries& ts)=0;
+  //  virtual ~TimeSeriesAnomalyDetector(){}
 };
 
 #endif //ASS1_ANOMALYDETECTOR_H

@@ -65,19 +65,19 @@ include CMakeFiles/ass1.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/ass1.dir/flags.make
 
-CMakeFiles/ass1.dir/main.cpp.obj: CMakeFiles/ass1.dir/flags.make
-CMakeFiles/ass1.dir/main.cpp.obj: CMakeFiles/ass1.dir/includes_CXX.rsp
-CMakeFiles/ass1.dir/main.cpp.obj: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Public\ass1\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/ass1.dir/main.cpp.obj"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\ass1.dir\main.cpp.obj -c C:\Users\Public\ass1\main.cpp
+CMakeFiles/ass1.dir/MainTrain.cpp.obj: CMakeFiles/ass1.dir/flags.make
+CMakeFiles/ass1.dir/MainTrain.cpp.obj: CMakeFiles/ass1.dir/includes_CXX.rsp
+CMakeFiles/ass1.dir/MainTrain.cpp.obj: ../MainTrain.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Public\ass1\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/ass1.dir/MainTrain.cpp.obj"
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\ass1.dir\MainTrain.cpp.obj -c C:\Users\Public\ass1\MainTrain.cpp
 
-CMakeFiles/ass1.dir/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ass1.dir/main.cpp.i"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Public\ass1\main.cpp > CMakeFiles\ass1.dir\main.cpp.i
+CMakeFiles/ass1.dir/MainTrain.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ass1.dir/MainTrain.cpp.i"
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Public\ass1\MainTrain.cpp > CMakeFiles\ass1.dir\MainTrain.cpp.i
 
-CMakeFiles/ass1.dir/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ass1.dir/main.cpp.s"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Public\ass1\main.cpp -o CMakeFiles\ass1.dir\main.cpp.s
+CMakeFiles/ass1.dir/MainTrain.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ass1.dir/MainTrain.cpp.s"
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Public\ass1\MainTrain.cpp -o CMakeFiles\ass1.dir\MainTrain.cpp.s
 
 CMakeFiles/ass1.dir/SimpleAnomalyDetection.cpp.obj: CMakeFiles/ass1.dir/flags.make
 CMakeFiles/ass1.dir/SimpleAnomalyDetection.cpp.obj: CMakeFiles/ass1.dir/includes_CXX.rsp
@@ -123,7 +123,7 @@ CMakeFiles/ass1.dir/TimeSeries.cpp.s: cmake_force
 
 # Object files for target ass1
 ass1_OBJECTS = \
-"CMakeFiles/ass1.dir/main.cpp.obj" \
+"CMakeFiles/ass1.dir/MainTrain.cpp.obj" \
 "CMakeFiles/ass1.dir/SimpleAnomalyDetection.cpp.obj" \
 "CMakeFiles/ass1.dir/anomaly_detection_util.cpp.obj" \
 "CMakeFiles/ass1.dir/TimeSeries.cpp.obj"
@@ -131,7 +131,7 @@ ass1_OBJECTS = \
 # External object files for target ass1
 ass1_EXTERNAL_OBJECTS =
 
-ass1.exe: CMakeFiles/ass1.dir/main.cpp.obj
+ass1.exe: CMakeFiles/ass1.dir/MainTrain.cpp.obj
 ass1.exe: CMakeFiles/ass1.dir/SimpleAnomalyDetection.cpp.obj
 ass1.exe: CMakeFiles/ass1.dir/anomaly_detection_util.cpp.obj
 ass1.exe: CMakeFiles/ass1.dir/TimeSeries.cpp.obj

@@ -82,6 +82,9 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="C:/Users/Public/ass1/MainTrain.cpp">
+			<Option target="ass1"/>
+		</Unit>
 		<Unit filename="C:/Users/Public/ass1/SimpleAnomalyDetection.cpp">
 			<Option target="ass1"/>
 		</Unit>
@@ -98,9 +101,6 @@
 			<Option target="ass1"/>
 		</Unit>
 		<Unit filename="C:/Users/Public/ass1/anomaly_detection_util.h">
-			<Option target="ass1"/>
-		</Unit>
-		<Unit filename="C:/Users/Public/ass1/main.cpp">
 			<Option target="ass1"/>
 		</Unit>
 		<Unit filename="C:/Users/Public/ass1/CMakeLists.txt">

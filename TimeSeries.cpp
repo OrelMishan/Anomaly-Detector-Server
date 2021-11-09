@@ -68,12 +68,12 @@ std::vector<std::vector<std::string>> TimeSeries::getTable() const {
 float *phraseToFloat(std::vector<std::string> vec) {
     float *arr = new float[vec.size() - 1];
     for (int i = 1; i < vec.size(); i++) {
-        arr[i - 1] = std::stof(vec[1]);
+        arr[i - 1] = std::stof(vec[i]);
     }
     return arr;
 }
 
-float **TimeSeries::getFloatArrays() {
+float ** TimeSeries::getFloatArrays() const {
     float**arr = new float*[table.size()];
     for (int i=0;i<table.size();i++) {
         arr[i] = phraseToFloat(table[i]);
@@ -83,6 +83,10 @@ float **TimeSeries::getFloatArrays() {
 
 int TimeSeries::getNumOfValues() const{
     return table[0].size()-1;
+}
+
+std::string TimeSeries::getName(int i) const {
+    return table.at(i).at(0);
 }
 
 
