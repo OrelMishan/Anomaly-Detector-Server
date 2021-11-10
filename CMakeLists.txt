@@ -7,8 +7,8 @@ include_directories(.)
 
 add_executable(ass1
         MainTrain.cpp
-        SimpleAnomalyDetection.cpp
-        SimpleAnomalyDetection.h
+        SimpleAnomalyDetector.cpp
+        SimpleAnomalyDetector.h
         anomaly_detection_util.cpp
         anomaly_detection_util.h
         TimeSeries.cpp

@@ -1,5 +1,5 @@
 #include "AnomalyDetector.h"
-#include "SimpleAnomalyDetection.h"
+#include "SimpleAnomalyDetector.h"
 #define TRSEHOLD 0.9
 
 
