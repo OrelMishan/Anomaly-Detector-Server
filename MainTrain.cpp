@@ -100,12 +100,12 @@ int main() {
             falseAlarms++;
     });
 
-//	if(!anomlyDetected)
-//		cout<<"the anomaly was not detected (-30)"<<endl;
-//
-//	if(falseAlarms>0)
-//		cout<<"you have "<<falseAlarms<<" false alarms (-"<<min(30,falseAlarms*3)<<")"<<endl;
-//
-//	cout<<"done"<<endl;
+    if(!anomlyDetected)
+		cout<<"the anomaly was not detected (-30)"<<endl;
+
+	if(falseAlarms>0)
+		cout<<"you have "<<falseAlarms<<" false alarms (-"<<min(30,falseAlarms*3)<<")"<<endl;
+
+	cout<<"done"<<endl;
     return 0;
 }

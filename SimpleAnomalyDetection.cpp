@@ -1,15 +1,13 @@
 #include "AnomalyDetector.h"
 #include "SimpleAnomalyDetection.h"
 
-#include <utility>
-#include <iostream>
+SimpleAnomalyDetector::SimpleAnomalyDetector() = default;
 
-SimpleAnomalyDetector::SimpleAnomalyDetector() = default;;
 
 float findMaxThreshold(Line line, float *pDouble, float *pDouble1, int size);
 
 Point **points(float *x, float *y, int size) {
-    Point **ptr = new Point*[size];
+    Point **ptr = new Point *[size];
     for (int i = 0; i < size; i++) {
         ptr[i] = new Point(x[i], y[i]);
     }
@@ -25,7 +23,7 @@ float findMaxThreshold(Line l, float *first, float *sec, int size) {
             f = tmp;
         }
     }
-    return f;
+    return f*1.1 ;
 }
 
 correlatedFeatures
@@ -35,9 +33,8 @@ creatingCorrelationStract(std::string firstName, std::string secName, float *fir
     a.feature1 = firstName;
     a.feature2 = secName;
     a.corrlation = corrlation;
-    Line l = linear_reg(points(first, sec, size), size);
-    a.lin_reg = l;
-    a.threshold = findMaxThreshold(l, first, sec, size);
+    a.lin_reg = linear_reg(points(first, sec, size), size);
+    a.threshold = findMaxThreshold(a.lin_reg, first, sec, size);
     return a;
 
 }
@@ -100,19 +97,20 @@ std::vector<correlatedFeatures> SimpleAnomalyDetector::getNormalModel() {
 //      }
 //
 //}
-std::vector<AnomalyReport> SimpleAnomalyDetector:: detect(const TimeSeries& ts){
+std::vector<AnomalyReport> SimpleAnomalyDetector::detect(const TimeSeries &ts) {
     std::vector<AnomalyReport> report;
-    float **arr=ts.getFloatArrays();
-    for (correlatedFeatures cor: data){
-        for (int i = 0; i < ts.getNumOfValues(); ++i) {
+    float **arr = ts.getFloatArrays();
+    for (int i = 1; i <= ts.getNumOfValues(); ++i) {
+        for (const correlatedFeatures &cor: data) {
             int x = nameToNum[cor.feature1];
             int y = nameToNum[cor.feature2];
-            Point p(arr[x][i],arr[y][i]);
-            float devision = dev(p,cor.lin_reg);
-            if (devision>cor.threshold){
-                std::string description = cor.feature1+"-"+cor.feature2;
-                report.push_back(AnomalyReport(description,i+1));
+            Point p(arr[x][i], arr[y][i]);
+            float devision = dev(p, cor.lin_reg);
+            if (devision > cor.threshold) {
+                std::string description = cor.feature1 + "-" + cor.feature2;
+                report.push_back(AnomalyReport(description, i + 1));
             }
         }
     }
+    return report;
 }

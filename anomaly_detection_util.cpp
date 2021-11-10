@@ -124,5 +124,4 @@ float dev(Point p, Line l) {
     float result = p.y - onLine;
     absFloat(&result);
     return result;
-
 }
