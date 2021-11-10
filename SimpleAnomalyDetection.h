@@ -18,8 +18,8 @@ class SimpleAnomalyDetector:public TimeSeriesAnomalyDetector{
     std::vector<correlatedFeatures> data;
     std::map<std::string,int> nameToNum;
 public:
-     SimpleAnomalyDetector();
-//    virtual ~SimpleAnomalyDetector();
+     SimpleAnomalyDetector()=default;
+    virtual ~SimpleAnomalyDetector()=default;
     virtual void learnNormal(const TimeSeries &ts);
 
     virtual std::vector<AnomalyReport> detect(const TimeSeries &ts);

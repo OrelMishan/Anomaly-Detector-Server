@@ -12,11 +12,10 @@ class TimeSeries{
     void putValues(std::string line) ;
 public:
     explicit TimeSeries(const std::string&);
-    void printTable();
+//    void printTable();
     std::vector<std::vector<std::string>> getTable() const;
     float ** getFloatArrays() const;
     int getNumOfValues() const;
-
     std::string getName(int i) const;
 };
 
