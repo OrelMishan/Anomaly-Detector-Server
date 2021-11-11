@@ -1,7 +1,10 @@
+//Name: Noam Tzuberi ID:313374837
+//Name: Orel Mishan ID:316551092
+
 #include <fstream>
 #include <vector>
 #include <iostream>
-#include "TimeSeries.h"
+#include "timeseries.h"
 
 void TimeSeries::putKeys(std::string line) {
 

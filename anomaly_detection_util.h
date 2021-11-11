@@ -1,3 +1,6 @@
+//Name: Noam Tzuberi ID:313374837
+//Name: Orel Mishan ID:316551092
+
 #ifndef ASS1_ANOMALY_DETECTION_UTIL_H
 #define ASS1_ANOMALY_DETECTION_UTIL_H
 

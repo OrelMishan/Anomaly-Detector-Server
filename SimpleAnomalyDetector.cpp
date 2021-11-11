@@ -1,3 +1,6 @@
+//Name: Noam Tzuberi ID:313374837
+//Name: Orel Mishan ID:316551092
+
 #include "AnomalyDetector.h"
 #include "SimpleAnomalyDetector.h"
 #define TRSEHOLD 0.9

@@ -1,10 +1,9 @@
-//
-// Created by user on 03/11/2021.
-//
+//Name: Noam Tzuberi ID:313374837
+//Name: Orel Mishan ID:316551092
 
 #ifndef ASS1_SIMPLEANOMALYDETECTOR_H
 #define ASS1_SIMPLEANOMALYDETECTOR_H
-
+#include <algorithm>
 #include "anomaly_detection_util.h"
 #include "AnomalyDetector.h"
 #include <map>
