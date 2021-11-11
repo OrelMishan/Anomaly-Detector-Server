@@ -1,4 +1,5 @@
-
+//Name: Noam Tzuberi ID:313374837
+//Name: Orel Mishan ID:316551092
 
 #ifndef ASS1_TIMESERIES_H
 #define ASS1_TIMESERIES_H
