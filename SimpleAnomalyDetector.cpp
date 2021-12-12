@@ -3,9 +3,44 @@
 
 #include "AnomalyDetector.h"
 #include "SimpleAnomalyDetector.h"
-#define TRSEHOLD 0.9
 
+#define TRSEHOLD 0.5
 
+std::vector<AnomalyReport> SimpleAnomalyDetector::detect(const TimeSeries &ts) {
+    // the vector that return the anomaly report
+    std::vector<AnomalyReport> report;
+
+    // creating the array of arrays of floats
+    float **arr = ts.getFloatArrays();
+
+    // loop for the length of the arrays
+    for (int i = 0; i < ts.getNumOfValues(); ++i) {
+
+        // loop for the cf
+        for (const correlatedFeatures &cor: data) {
+
+            // the first feature and his column number
+            int x = nameToNum[cor.feature1];
+
+            // the second feature and his column number
+            int y = nameToNum[cor.feature2];
+
+            // creating the point of the values
+            Point p(arr[x][i], arr[y][i]);
+
+            // checking the distance from the line
+            float devision = dev(p, cor.lin_reg);
+
+            // if the dis bigger than the threshold report it
+            if (devision > cor.threshold) {
+                // creating the description
+                std::string description = cor.feature1 + "-" + cor.feature2;
+                report.push_back(AnomalyReport(description, i + 1));
+            }
+        }
+    }
+    return report;
+}
 
 float findMaxThreshold(Line l, float *first, float *sec, int size) {
     // the basic threshold at start= 0.
@@ -22,9 +57,11 @@ float findMaxThreshold(Line l, float *first, float *sec, int size) {
         }
     }
     // return little higher than the threshold we got
-    return f * (float)1.1 ;
+    return f * (float) 1.1;
 }
-
+std::vector<correlatedFeatures> SimpleAnomalyDetector::getNormalModel() {
+    return data;
+}
 Point **points(float *x, float *y, int size) {
 
     // pointer to points array
@@ -41,11 +78,10 @@ Point **points(float *x, float *y, int size) {
 
 
 correlatedFeatures creatingCorrelationStruct(std::string firstName, std::string secName,
-                                             float *first, float *sec, int size, float corrlation) {
-
-    // creating the struct
+                                           Line linear_reg,float threshold,float corrlation) {
     correlatedFeatures a;
 
+    a.is_line=true;
     // add the first feature
     a.feature1 = firstName;
     // add the second feature
@@ -55,19 +91,37 @@ correlatedFeatures creatingCorrelationStruct(std::string firstName, std::string 
     a.corrlation = corrlation;
 
     // creating the line
-    Point **arrPoints=points(first, sec, size);
-    a.lin_reg = linear_reg(arrPoints, size);
-    for (int i = 0; i < size; ++i) {
-        delete []arrPoints[i];
-    }
-    delete []arrPoints;
+
+    a.lin_reg = linear_reg;
 
     // finding the max threshold
-    a.threshold = findMaxThreshold(a.lin_reg, first, sec, size);
+    a.threshold = threshold;
+
+
     return a;
 
 }
+void SimpleAnomalyDetector::isCorr(const TimeSeries &ts,float **fArr,int i,int matcher, float corrlation ) {
+    if (corrlation >= 0.9) {
+        Line the_line = lin_reg(fArr[i], fArr[matcher],
+                                ts.getNumOfValues());
+        float threshold = findMaxThreshold(the_line, fArr[i], fArr[matcher],
+                                           ts.getNumOfValues());
 
+        data.push_back(creatingCorrelationStruct
+                               (ts.getName(i), ts.getName(matcher), the_line, threshold, corrlation));
+
+    }
+}
+Line SimpleAnomalyDetector::lin_reg(float *first, float *sec, int size) {
+    Point **arrPoints = points(first, sec, size);
+    Line lin_reg = linear_reg(arrPoints, size);
+    for (int i = 0; i < size; ++i) {
+        delete[]arrPoints[i];
+    }
+    delete[]arrPoints;
+    return lin_reg;
+}
 void SimpleAnomalyDetector::learnNormal(const TimeSeries &ts) {
     //get floats arrays of the values of ts
     float **fArr = ts.getFloatArrays();
@@ -107,58 +161,19 @@ void SimpleAnomalyDetector::learnNormal(const TimeSeries &ts) {
             // insert to the map name of the match(corrlative) column and it number
             nameToNum[ts.getTable()[matcher][0]] = matcher;
 
-            // add the struct to the vector of coralletion
-            data.push_back(creatingCorrelationStruct
-                                   (ts.getName(i), ts.getName(matcher), fArr[i], fArr[matcher],
-                                    ts.getNumOfValues(), corrlation));
+            isCorr(ts, fArr, i, matcher, corrlation);
+
         }
-    }
 
-    // free the arrays
-    for (int i = 0; i < ts.getTable().size(); i++) {
-        delete[] fArr[i];
-    }
-    delete fArr;
-}
 
-std::vector<correlatedFeatures> SimpleAnomalyDetector::getNormalModel() {
-    return data;
-}
-
-std::vector<AnomalyReport> SimpleAnomalyDetector::detect(const TimeSeries &ts) {
-    // the vector that return the anomaly report
-    std::vector<AnomalyReport> report;
-
-    // creating the array of arrays of floats
-    float **arr = ts.getFloatArrays();
-
-    // loop for the length of the arrays
-    for (int i = 0; i < ts.getNumOfValues(); ++i) {
-
-        // loop for the cf
-        for (const correlatedFeatures &cor: data) {
-
-            // the first feature and his column number
-            int x = nameToNum[cor.feature1];
-
-            // the second feature and his column number
-            int y = nameToNum[cor.feature2];
-
-            // creating the point of the values
-            Point p(arr[x][i], arr[y][i]);
-
-            // checking the distance from the line
-            float devision = dev(p, cor.lin_reg);
-
-            // if the dis bigger than the threshold report it
-            if (devision > cor.threshold) {
-                // creating the description
-                std::string description = cor.feature1 + "-" + cor.feature2;
-                report.push_back(AnomalyReport(description, i + 1));
-            }
+        // free the arrays
+        for (int i = 0; i < ts.getTable().size(); i++) {
+            delete[] fArr[i];
         }
+        delete fArr;
     }
-    return report;
+
+
+
+
 }
-
-

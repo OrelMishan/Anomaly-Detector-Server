@@ -10,15 +10,21 @@
 #include <vector>
 
 struct correlatedFeatures {
+    bool is_line;
     std::string feature1, feature2; // names of the correlated features
     float corrlation;
     Line lin_reg;
     float threshold;
+    Point center = Point (0,0);
 };
 
 class SimpleAnomalyDetector : public TimeSeriesAnomalyDetector {
+protected:
     std::vector<correlatedFeatures> data;
     std::map<std::string, int> nameToNum;
+    virtual void isCorr(const TimeSeries &ts,float **fArr,int i,int matcher, float corrlation );
+    Line lin_reg(float *first, float *sec, int size);
+
 public:
     SimpleAnomalyDetector() = default;
 
@@ -29,6 +35,9 @@ public:
     virtual std::vector<AnomalyReport> detect(const TimeSeries &ts);
 
     std::vector<correlatedFeatures> getNormalModel();
+
+
+
 };
 
 #endif //ASS1_SIMPLEANOMALYDETECTOR_H
