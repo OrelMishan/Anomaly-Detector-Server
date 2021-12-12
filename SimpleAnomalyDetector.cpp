@@ -5,7 +5,10 @@
 #include "SimpleAnomalyDetector.h"
 
 #define TRSEHOLD 0.5
+float SimpleAnomalyDetector::findDev(Point p,correlatedFeatures cor){
+    return dev(p, cor.lin_reg);
 
+}
 std::vector<AnomalyReport> SimpleAnomalyDetector::detect(const TimeSeries &ts) {
     // the vector that return the anomaly report
     std::vector<AnomalyReport> report;
@@ -28,8 +31,10 @@ std::vector<AnomalyReport> SimpleAnomalyDetector::detect(const TimeSeries &ts) {
             // creating the point of the values
             Point p(arr[x][i], arr[y][i]);
 
+
             // checking the distance from the line
-            float devision = dev(p, cor.lin_reg);
+            float devision = findDev(p,cor);
+
 
             // if the dis bigger than the threshold report it
             if (devision > cor.threshold) {
@@ -62,7 +67,7 @@ float findMaxThreshold(Line l, float *first, float *sec, int size) {
 std::vector<correlatedFeatures> SimpleAnomalyDetector::getNormalModel() {
     return data;
 }
-Point **points(float *x, float *y, int size) {
+Point** SimpleAnomalyDetector::points(float *x, float *y, int size) {
 
     // pointer to points array
     Point **ptr = new Point *[size];
@@ -112,6 +117,7 @@ void SimpleAnomalyDetector::isCorr(const TimeSeries &ts,float **fArr,int i,int m
                                (ts.getName(i), ts.getName(matcher), the_line, threshold, corrlation));
 
     }
+
 }
 Line SimpleAnomalyDetector::lin_reg(float *first, float *sec, int size) {
     Point **arrPoints = points(first, sec, size);
@@ -162,9 +168,8 @@ void SimpleAnomalyDetector::learnNormal(const TimeSeries &ts) {
             nameToNum[ts.getTable()[matcher][0]] = matcher;
 
             isCorr(ts, fArr, i, matcher, corrlation);
-
+            }
         }
-
 
         // free the arrays
         for (int i = 0; i < ts.getTable().size(); i++) {
@@ -172,8 +177,3 @@ void SimpleAnomalyDetector::learnNormal(const TimeSeries &ts) {
         }
         delete fArr;
     }
-
-
-
-
-}

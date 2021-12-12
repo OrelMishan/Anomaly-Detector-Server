@@ -6,6 +6,7 @@
 #include <algorithm>
 #include "anomaly_detection_util.h"
 #include "AnomalyDetector.h"
+#include "minCircle.h"
 #include <map>
 #include <vector>
 
@@ -15,7 +16,7 @@ struct correlatedFeatures {
     float corrlation;
     Line lin_reg;
     float threshold;
-    Point center = Point (0,0);
+    Circle c =Circle (Point(0,0),0);
 };
 
 class SimpleAnomalyDetector : public TimeSeriesAnomalyDetector {
@@ -24,6 +25,8 @@ protected:
     std::map<std::string, int> nameToNum;
     virtual void isCorr(const TimeSeries &ts,float **fArr,int i,int matcher, float corrlation );
     Line lin_reg(float *first, float *sec, int size);
+    virtual float findDev(Point p,correlatedFeatures cor);
+    Point **points(float *x, float *y, int size);
 
 public:
     SimpleAnomalyDetector() = default;

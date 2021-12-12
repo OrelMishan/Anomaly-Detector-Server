@@ -4,15 +4,18 @@
 
 #ifndef ASS1_HYBRIDANOMALYDETECTOR_H
 #define ASS1_HYBRIDANOMALYDETECTOR_H
-#include <algorithm>
-#include "anomaly_detection_util.h"
-#include "AnomalyDetector.h"
-#include <map>
-#include <vector>
+#include <SimpleAnomalyDetector.h>
+#include <minCircle.h>
+
 
 class HybridAnomalyDetector : public SimpleAnomalyDetector{
-    virtual void isCorr(const TimeSeries &ts,float **fArr,int i,int matcher, float corrlation ) override;
+    void isCorr(const TimeSeries &ts,float **fArr,int i,int matcher, float corrlation ) override;
     correlatedFeatures creatingCorrelationStruct(std::string firstName, std::string secName,
-                                                 Point center,float threshold,float corrlation)
+                                                 Circle c,float corrlation);
+    float findDev(Point p,correlatedFeatures cor) override;
+public:
+    HybridAnomalyDetector() = default;
+    virtual ~HybridAnomalyDetector() = default;
+
 };
 #endif //ASS1_HYBRIDANOMALYDETECTOR_H

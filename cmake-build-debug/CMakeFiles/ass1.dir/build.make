@@ -107,10 +107,38 @@ CMakeFiles/ass1.dir/anomaly_detection_util.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ass1.dir/anomaly_detection_util.cpp.s"
 	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\user\CLionProjects\ass1\anomaly_detection_util.cpp -o CMakeFiles\ass1.dir\anomaly_detection_util.cpp.s
 
+CMakeFiles/ass1.dir/HybridAnomalyDetector.cpp.obj: CMakeFiles/ass1.dir/flags.make
+CMakeFiles/ass1.dir/HybridAnomalyDetector.cpp.obj: CMakeFiles/ass1.dir/includes_CXX.rsp
+CMakeFiles/ass1.dir/HybridAnomalyDetector.cpp.obj: ../HybridAnomalyDetector.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\user\CLionProjects\ass1\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/ass1.dir/HybridAnomalyDetector.cpp.obj"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\ass1.dir\HybridAnomalyDetector.cpp.obj -c C:\Users\user\CLionProjects\ass1\HybridAnomalyDetector.cpp
+
+CMakeFiles/ass1.dir/HybridAnomalyDetector.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ass1.dir/HybridAnomalyDetector.cpp.i"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\user\CLionProjects\ass1\HybridAnomalyDetector.cpp > CMakeFiles\ass1.dir\HybridAnomalyDetector.cpp.i
+
+CMakeFiles/ass1.dir/HybridAnomalyDetector.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ass1.dir/HybridAnomalyDetector.cpp.s"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\user\CLionProjects\ass1\HybridAnomalyDetector.cpp -o CMakeFiles\ass1.dir\HybridAnomalyDetector.cpp.s
+
+CMakeFiles/ass1.dir/minCircle.cpp.obj: CMakeFiles/ass1.dir/flags.make
+CMakeFiles/ass1.dir/minCircle.cpp.obj: CMakeFiles/ass1.dir/includes_CXX.rsp
+CMakeFiles/ass1.dir/minCircle.cpp.obj: ../minCircle.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\user\CLionProjects\ass1\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/ass1.dir/minCircle.cpp.obj"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\ass1.dir\minCircle.cpp.obj -c C:\Users\user\CLionProjects\ass1\minCircle.cpp
+
+CMakeFiles/ass1.dir/minCircle.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ass1.dir/minCircle.cpp.i"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\user\CLionProjects\ass1\minCircle.cpp > CMakeFiles\ass1.dir\minCircle.cpp.i
+
+CMakeFiles/ass1.dir/minCircle.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ass1.dir/minCircle.cpp.s"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\user\CLionProjects\ass1\minCircle.cpp -o CMakeFiles\ass1.dir\minCircle.cpp.s
+
 CMakeFiles/ass1.dir/timeseries.cpp.obj: CMakeFiles/ass1.dir/flags.make
 CMakeFiles/ass1.dir/timeseries.cpp.obj: CMakeFiles/ass1.dir/includes_CXX.rsp
 CMakeFiles/ass1.dir/timeseries.cpp.obj: ../timeseries.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\user\CLionProjects\ass1\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/ass1.dir/timeseries.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\user\CLionProjects\ass1\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/ass1.dir/timeseries.cpp.obj"
 	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\ass1.dir\timeseries.cpp.obj -c C:\Users\user\CLionProjects\ass1\timeseries.cpp
 
 CMakeFiles/ass1.dir/timeseries.cpp.i: cmake_force
@@ -126,6 +154,8 @@ ass1_OBJECTS = \
 "CMakeFiles/ass1.dir/MainTrain.cpp.obj" \
 "CMakeFiles/ass1.dir/SimpleAnomalyDetector.cpp.obj" \
 "CMakeFiles/ass1.dir/anomaly_detection_util.cpp.obj" \
+"CMakeFiles/ass1.dir/HybridAnomalyDetector.cpp.obj" \
+"CMakeFiles/ass1.dir/minCircle.cpp.obj" \
 "CMakeFiles/ass1.dir/timeseries.cpp.obj"
 
 # External object files for target ass1
@@ -134,12 +164,14 @@ ass1_EXTERNAL_OBJECTS =
 ass1.exe: CMakeFiles/ass1.dir/MainTrain.cpp.obj
 ass1.exe: CMakeFiles/ass1.dir/SimpleAnomalyDetector.cpp.obj
 ass1.exe: CMakeFiles/ass1.dir/anomaly_detection_util.cpp.obj
+ass1.exe: CMakeFiles/ass1.dir/HybridAnomalyDetector.cpp.obj
+ass1.exe: CMakeFiles/ass1.dir/minCircle.cpp.obj
 ass1.exe: CMakeFiles/ass1.dir/timeseries.cpp.obj
 ass1.exe: CMakeFiles/ass1.dir/build.make
 ass1.exe: CMakeFiles/ass1.dir/linklibs.rsp
 ass1.exe: CMakeFiles/ass1.dir/objects1.rsp
 ass1.exe: CMakeFiles/ass1.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\user\CLionProjects\ass1\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable ass1.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\user\CLionProjects\ass1\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable ass1.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\ass1.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

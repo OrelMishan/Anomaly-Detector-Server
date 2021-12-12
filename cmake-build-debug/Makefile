@@ -128,6 +128,30 @@ ass1/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\ass1.dir\build.make CMakeFiles/ass1.dir/build
 .PHONY : ass1/fast
 
+HybridAnomalyDetector.obj: HybridAnomalyDetector.cpp.obj
+.PHONY : HybridAnomalyDetector.obj
+
+# target to build an object file
+HybridAnomalyDetector.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ass1.dir\build.make CMakeFiles/ass1.dir/HybridAnomalyDetector.cpp.obj
+.PHONY : HybridAnomalyDetector.cpp.obj
+
+HybridAnomalyDetector.i: HybridAnomalyDetector.cpp.i
+.PHONY : HybridAnomalyDetector.i
+
+# target to preprocess a source file
+HybridAnomalyDetector.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ass1.dir\build.make CMakeFiles/ass1.dir/HybridAnomalyDetector.cpp.i
+.PHONY : HybridAnomalyDetector.cpp.i
+
+HybridAnomalyDetector.s: HybridAnomalyDetector.cpp.s
+.PHONY : HybridAnomalyDetector.s
+
+# target to generate assembly for a file
+HybridAnomalyDetector.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ass1.dir\build.make CMakeFiles/ass1.dir/HybridAnomalyDetector.cpp.s
+.PHONY : HybridAnomalyDetector.cpp.s
+
 MainTrain.obj: MainTrain.cpp.obj
 .PHONY : MainTrain.obj
 
@@ -200,6 +224,30 @@ anomaly_detection_util.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\ass1.dir\build.make CMakeFiles/ass1.dir/anomaly_detection_util.cpp.s
 .PHONY : anomaly_detection_util.cpp.s
 
+minCircle.obj: minCircle.cpp.obj
+.PHONY : minCircle.obj
+
+# target to build an object file
+minCircle.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ass1.dir\build.make CMakeFiles/ass1.dir/minCircle.cpp.obj
+.PHONY : minCircle.cpp.obj
+
+minCircle.i: minCircle.cpp.i
+.PHONY : minCircle.i
+
+# target to preprocess a source file
+minCircle.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ass1.dir\build.make CMakeFiles/ass1.dir/minCircle.cpp.i
+.PHONY : minCircle.cpp.i
+
+minCircle.s: minCircle.cpp.s
+.PHONY : minCircle.s
+
+# target to generate assembly for a file
+minCircle.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ass1.dir\build.make CMakeFiles/ass1.dir/minCircle.cpp.s
+.PHONY : minCircle.cpp.s
+
 timeseries.obj: timeseries.cpp.obj
 .PHONY : timeseries.obj
 
@@ -233,6 +281,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... ass1
+	@echo ... HybridAnomalyDetector.obj
+	@echo ... HybridAnomalyDetector.i
+	@echo ... HybridAnomalyDetector.s
 	@echo ... MainTrain.obj
 	@echo ... MainTrain.i
 	@echo ... MainTrain.s
@@ -242,6 +293,9 @@ help:
 	@echo ... anomaly_detection_util.obj
 	@echo ... anomaly_detection_util.i
 	@echo ... anomaly_detection_util.s
+	@echo ... minCircle.obj
+	@echo ... minCircle.i
+	@echo ... minCircle.s
 	@echo ... timeseries.obj
 	@echo ... timeseries.i
 	@echo ... timeseries.s
