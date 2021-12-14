@@ -138,7 +138,7 @@ Circle welzl_helper(vector<Point> &P,
     return welzl_helper(P, R, n - 1);
 }
 
-Circle welzl(const vector<Point> &P) {
+Circle welzl(const vector<Point> &P ) {
     vector<Point> P_copy = P;
     random_shuffle(P_copy.begin(), P_copy.end());
     return welzl_helper(P_copy, {}, P_copy.size());
