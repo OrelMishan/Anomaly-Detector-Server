@@ -14,6 +14,7 @@ class HybridAnomalyDetector : public SimpleAnomalyDetector{
                                                  Circle c,float corrlation);
     float findDev(Point p,correlatedFeatures cor) override;
 public:
+    float distance(Point p,Point c);
     HybridAnomalyDetector() = default;
     virtual ~HybridAnomalyDetector() = default;
 

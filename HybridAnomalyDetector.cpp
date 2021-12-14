@@ -16,7 +16,7 @@ void HybridAnomalyDetector::isCorr(const TimeSeries &ts,float **fArr,int i,int m
     }
 
 }
-float distance(Point p,Point c) {
+float HybridAnomalyDetector:: distance(Point p,Point c) {
     float dis;
     dis = powf(p.x-c.x,2) + powf(p.y-c.y,2);
     return sqrtf(dis);
