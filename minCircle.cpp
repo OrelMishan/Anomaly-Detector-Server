@@ -1,11 +1,12 @@
-//
-// Created by user on 12/12/2021.
-//
+//Name: Noam Tzuberi ID:313374837
+//Name: Orel Mishan ID:316551092
+
 #include <cmath>
 #include <algorithm>
 #include <assert.h>
 #include <vector>
 #include "minCircle.h"
+
 
 using namespace std;
 
