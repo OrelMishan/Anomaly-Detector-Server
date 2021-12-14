@@ -24,7 +24,7 @@ float HybridAnomalyDetector:: distance(Point p,Point c) {
 
 float HybridAnomalyDetector::findDev(Point p,correlatedFeatures cor) {
     if (cor.is_line){
-        SimpleAnomalyDetector::findDev(p,cor);
+        return SimpleAnomalyDetector::findDev(p,cor);
     }
     return distance(p,cor.c.center);
 }

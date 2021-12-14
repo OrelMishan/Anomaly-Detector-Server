@@ -10,9 +10,13 @@ CMakeFiles/ass1.dir/HybridAnomalyDetector.cpp.obj: \
  ../HybridAnomalyDetector.cpp \
  ../HybridAnomalyDetector.h
 CMakeFiles/ass1.dir/MainTrain.cpp.obj: \
- ../MainTrain.cpp \
+ ../AnomalyDetector.h \
+ ../SimpleAnomalyDetector.h \
+ ../TimeSeries.h \
  ../anomaly_detection_util.h \
- ../minCircle.h
+ ../minCircle.h \
+ ../HybridAnomalyDetector.h \
+ ../MainTrain.cpp
 CMakeFiles/ass1.dir/SimpleAnomalyDetector.cpp.obj: \
  ../AnomalyDetector.h \
  ../SimpleAnomalyDetector.cpp \
@@ -24,9 +28,6 @@ CMakeFiles/ass1.dir/anomaly_detection_util.cpp.obj: \
  ../anomaly_detection_util.cpp \
  ../anomaly_detection_util.h
 CMakeFiles/ass1.dir/minCircle.cpp.obj: \
- ../AnomalyDetector.h \
- ../SimpleAnomalyDetector.h \
- ../TimeSeries.h \
  ../anomaly_detection_util.h \
  ../minCircle.cpp \
  ../minCircle.h
