@@ -3,8 +3,8 @@
 
 #ifndef ASS1_HYBRIDANOMALYDETECTOR_H
 #define ASS1_HYBRIDANOMALYDETECTOR_H
-#include <SimpleAnomalyDetector.h>
-#include <minCircle.h>
+#include "SimpleAnomalyDetector.h"
+#include "minCircle.h"
 
 
 class HybridAnomalyDetector : public SimpleAnomalyDetector{

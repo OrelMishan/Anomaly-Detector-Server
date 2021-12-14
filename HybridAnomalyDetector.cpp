@@ -1,7 +1,7 @@
 //Name: Noam Tzuberi ID:313374837
 //Name: Orel Mishan ID:316551092
 
-#include <HybridAnomalyDetector.h>
+#include "HybridAnomalyDetector.h"
 #include <cmath>
 
 void HybridAnomalyDetector::isCorr(const TimeSeries &ts,float **fArr,int i,int matcher, float corrlation ){
