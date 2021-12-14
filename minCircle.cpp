@@ -2,11 +2,8 @@
 // Created by user on 12/12/2021.
 //
 #include <cmath>
-#include <SimpleAnomalyDetector.h>
 #include <algorithm>
 #include <assert.h>
-#include <iostream>
-
 #include <vector>
 #include "minCircle.h"
 
@@ -140,7 +137,7 @@ Circle welzl_helper(vector<Point> &P,
 
 Circle welzl(const vector<Point> &P ) {
     vector<Point> P_copy = P;
-    random_shuffle(P_copy.begin(), P_copy.end());
+//    random_shuffle(P_copy.begin(), P_copy.end());
     return welzl_helper(P_copy, {}, P_copy.size());
 }
 
