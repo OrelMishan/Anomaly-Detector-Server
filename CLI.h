@@ -10,7 +10,8 @@ using namespace std;
 
 class CLI {
     DefaultIO *dio;
-    Command* arrayCommand[4];
+    Command* arrayCommand[6];
+    std::vector<AnomalyReport> anomalyReport;
 
 public:
     CLI(DefaultIO *dio);

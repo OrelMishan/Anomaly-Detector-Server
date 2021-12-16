@@ -8,7 +8,7 @@
 
 
 class HybridAnomalyDetector : public SimpleAnomalyDetector{
-    void isCorr(const TimeSeries &ts,float **fArr,int i,int matcher, float corrlation ) override;
+    void isCorr(const TimeSeries &ts,float **fArr,int i,int matcher, float corrlation) override;
     correlatedFeatures creatingCorrelationStruct(std::string firstName, std::string secName,
                                                  Circle c,float corrlation);
     float findDev(Point p,correlatedFeatures cor) override;

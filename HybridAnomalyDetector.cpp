@@ -4,8 +4,8 @@
 #include "HybridAnomalyDetector.h"
 #include <cmath>
 
-void HybridAnomalyDetector::isCorr(const TimeSeries &ts,float **fArr,int i,int matcher, float corrlation ){
-    if (corrlation >= 0.9){
+void HybridAnomalyDetector::isCorr(const TimeSeries &ts,float **fArr,int i,int matcher, float corrlation){
+    if (corrlation >=lineTreshold){
          SimpleAnomalyDetector :: isCorr(ts,fArr,i,matcher,corrlation);
     }
     else {

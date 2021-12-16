@@ -106,7 +106,7 @@ correlatedFeatures creatingCorrelationStruct(std::string firstName, std::string 
     return a;
 
 }
-void SimpleAnomalyDetector::isCorr(const TimeSeries &ts,float **fArr,int i,int matcher, float corrlation ) {
+void SimpleAnomalyDetector::isCorr(const TimeSeries &ts,float **fArr,int i,int matcher, float corrlation){
     if (corrlation >= 0.9) {
         Line the_line = lin_reg(fArr[i], fArr[matcher],
                                 ts.getNumOfValues());
@@ -136,7 +136,7 @@ void SimpleAnomalyDetector::learnNormal(const TimeSeries &ts) {
     for (int i = 0; i < ts.getTable().size(); i++) {
         // initializing the corr and the match subject
         int matcher = 0;
-        float corrlation = 0.5;
+        float corrlation = 0.9;
         float *x = fArr[i];
 
         // for loop for the matcher subject
@@ -177,3 +177,9 @@ void SimpleAnomalyDetector::learnNormal(const TimeSeries &ts) {
         }
         delete fArr;
     }
+void SimpleAnomalyDetector::setThreshold(float currentCorr){
+    lineTreshold = currentCorr;
+}
+float SimpleAnomalyDetector::getThreshold() const{
+    return lineTreshold;
+}

@@ -36,11 +36,17 @@ class Command {
 protected:
     std::string description;
     DefaultIO *dio;
+    SimpleAnomalyDetector *sad;
+    std::vector<AnomalyReport> *anomalyReport;
+
 public:
     Command(DefaultIO *dio) : dio(dio) {}
+
     virtual void execute() = 0;
+
     virtual ~Command() {}
-    std:: string getDescription(){
+
+    std::string getDescription() {
         return description;
     };
 };
@@ -58,10 +64,12 @@ class uploadCommand : public Command {
         }
         dio->write("Upload complete");
     }
+
 public:
     uploadCommand(DefaultIO dio) : Command(&dio) {
         description = "1. upload a time series csv file";
     };
+
     void execute() override {
         getFile("train");
         getFile("test");
@@ -69,17 +77,53 @@ public:
 };
 
 class settingsCommand : public Command {
-
-
 public:
     settingsCommand(DefaultIO dio) : Command(&dio) {
         description = "2. algorithm settings";
     };
-    void execute() override {
-        
-    }
 
-}
+    void execute() override {
+        float newThreshold;
+        dio->write("the current correlation threshold is" + std::to_string(sad->getThreshold()));
+        dio->read(&newThreshold);
+        while (newThreshold < 0 || newThreshold > 1) {
+            dio->write("please choose a value between 0 and 1");
+            dio->write("the current correlation threshold is" + std::to_string(sad->getThreshold()));
+            dio->read(&newThreshold);
+        }
+        sad->setThreshold(newThreshold);
+    }
+};
+
+class detectCommand : public Command {
+public:
+    detectCommand(DefaultIO dio) : Command(&dio) {
+        description = "3. detect anomalies";
+    };
+
+    void execute() override {
+        TimeSeries train("train.csv");
+        TimeSeries test("test.csv");
+        sad->learnNormal(train);
+        *anomalyReport = sad->detect(test);
+        dio->write("anomaly detection complete");
+    }
+};
+
+class resultsCommand : public Command {
+public:
+    resultsCommand(DefaultIO dio) : Command(&dio) {
+        description = "4. display results";
+    };
+
+
+    void execute() override {
+        for(AnomalyReport report:*anomalyReport){
+            dio->write(std::to_string(report.timeStep)+"\t"+  report.description);
+        }
+        dio->write("done");
+    }
+};
 
 
 
