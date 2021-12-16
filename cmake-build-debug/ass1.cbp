@@ -82,6 +82,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="C:/Users/user/CLionProjects/ass1/CLI.cpp">
+			<Option target="ass1"/>
+		</Unit>
+		<Unit filename="C:/Users/user/CLionProjects/ass1/CLI.h">
+			<Option target="ass1"/>
+		</Unit>
 		<Unit filename="C:/Users/user/CLionProjects/ass1/HybridAnomalyDetector.cpp">
 			<Option target="ass1"/>
 		</Unit>
@@ -101,6 +107,9 @@
 			<Option target="ass1"/>
 		</Unit>
 		<Unit filename="C:/Users/user/CLionProjects/ass1/anomaly_detection_util.h">
+			<Option target="ass1"/>
+		</Unit>
+		<Unit filename="C:/Users/user/CLionProjects/ass1/commands.h">
 			<Option target="ass1"/>
 		</Unit>
 		<Unit filename="C:/Users/user/CLionProjects/ass1/minCircle.cpp">

@@ -92,20 +92,6 @@ TimeSeries::TimeSeries(const std::string &path) {
     fin.close();
 }
 
-/**
- * print function
- * @return
- */
-//void TimeSeries::printTable() {
-//    int sizeVector = table.at(1).size();
-//    for (int i = 0; i < sizeVector; i++) {
-//        for (auto &it: table) {
-//            std::cout << it.at(i) << ":";
-//        }
-//        std::cout << std::endl;
-//    }
-//}
-
 std::vector<std::vector<std::string>> TimeSeries::getTable() const {
     return table;
 }
