@@ -1,5 +1,3 @@
-
-
 #ifndef CLI_H_
 #define CLI_H_
 
@@ -12,6 +10,8 @@ class CLI {
     DefaultIO *dio;
     Command* arrayCommand[6];
     std::vector<AnomalyReport> anomalyReport;
+    int linesNumber;
+
 
 public:
     CLI(DefaultIO *dio);

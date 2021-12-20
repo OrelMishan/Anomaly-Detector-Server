@@ -69,9 +69,9 @@ class uploadCommand : public Command {
     }
 
 public:
-    uploadCommand(DefaultIO dio, SimpleAnomalyDetector *sad, std::vector<AnomalyReport> *anomalyReport) : Command(&dio,
-                                                                                                                  sad,
-                                                                                                                  anomalyReport) {
+    uploadCommand(DefaultIO *dio, SimpleAnomalyDetector *sad, vector<AnomalyReport> anomalyReport) : Command(&dio,
+                                                                                                             sad,
+                                                                                                             anomalyReport) {
         description = "1.upload a time series csv file";
     };
 
@@ -186,7 +186,7 @@ public:
         description = "6.exit";
     }
     void execute() override {
-
+        exit(0);
     }
 };
 
