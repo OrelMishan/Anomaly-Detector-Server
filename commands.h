@@ -40,9 +40,10 @@ protected:
     std::vector<AnomalyReport> *anomalyReport;
     int linesNumber;
 
-public:
-    Command(DefaultIO *dio) : dio(dio) {}
 
+public:
+    Command(DefaultIO *dio, SimpleAnomalyDetector *sad, std::vector<AnomalyReport> *anomalyReport) : dio(dio), sad(sad),
+                                                                                                     anomalyReport(anomalyReport) {}
     virtual void execute() = 0;
 
     virtual ~Command() {}
@@ -68,9 +69,10 @@ class uploadCommand : public Command {
     }
 
 public:
-    uploadCommand(DefaultIO dio) : Command(&dio) {
+    uploadCommand(DefaultIO dio, SimpleAnomalyDetector *sad, std::vector<AnomalyReport> *anomalyReport) : Command(&dio,
+                                                                                                                  sad,
+                                                                                                                  anomalyReport) {
         description = "1.upload a time series csv file";
-
     };
 
     void execute() override {
@@ -81,8 +83,10 @@ public:
 
 class settingsCommand : public Command {
 public:
-    settingsCommand(DefaultIO dio) : Command(&dio) {
+    settingsCommand(DefaultIO dio, SimpleAnomalyDetector *sad, std::vector<AnomalyReport> *anomalyReport) : Command(
+            &dio, sad, anomalyReport) {
         description = "2.algorithm settings";
+
     };
 
     void execute() override {
@@ -100,9 +104,10 @@ public:
 
 class detectCommand : public Command {
 public:
-    detectCommand(DefaultIO dio) : Command(&dio) {
+    detectCommand(DefaultIO dio, SimpleAnomalyDetector *sad, std::vector<AnomalyReport> *anomalyReport) : Command(&dio,sad,anomalyReport) {
         description = "3.detect anomalies";
-    };
+    }
+
 
     void execute() override {
         TimeSeries train("train.csv");
@@ -116,13 +121,13 @@ public:
 
 class resultsCommand : public Command {
 public:
-    resultsCommand(DefaultIO dio) : Command(&dio) {
+    resultsCommand(DefaultIO dio, SimpleAnomalyDetector *sad, std::vector<AnomalyReport> *anomalyReport) : Command(&dio,sad,anomalyReport){
         description = "4.display results";
-    };
+    }
 
 
     void execute() override {
-        for (AnomalyReport report: *anomalyReport) {
+        for (const AnomalyReport& report: *anomalyReport) {
             dio->write(std::to_string(report.timeStep) + "\t" + report.description);
         }
         dio->write("done");
@@ -131,7 +136,7 @@ public:
 
 class analyzeCommand : public Command {
 public:
-    analyzeCommand(DefaultIO dio) : Command(&dio) {
+    analyzeCommand(DefaultIO dio, SimpleAnomalyDetector *sad, std::vector<AnomalyReport> *anomalyReport) : Command(&dio,sad,anomalyReport){
         description = "5.upload anomalies and analyze results";
     };
 
@@ -157,23 +162,34 @@ public:
             int end = stoi(line);
             clientReporting += end - start + 1;
             bool isTrue = false;
-            for (const AnomalyReport& report: *anomalyReport) {
+            for (const AnomalyReport &report: *anomalyReport) {
                 if (report.timeStep >= start || report.timeStep <= end) {
                     isTrue = true;
-                    TP +=1;
+                    TP += 1;
                     break;
                 }
             }
             if (!isTrue) {
-              FP += 1;
+                FP += 1;
             }
             line = dio->read();
         }
         dio->write("Upload complete");
-        dio->write("True Positive Rate: " + std::to_string(TP/positive));
-        dio->write("True Positive Rate: " + std::to_string(FP/linesNumber-clientReporting));
+        dio->write("True Positive Rate: " + std::to_string(TP / positive));
+        dio->write("True Positive Rate: " + std::to_string(FP / linesNumber - clientReporting));
     }
 };
+
+class exitCommand : public Command {
+public:
+    exitCommand(DefaultIO dio, SimpleAnomalyDetector *sad, std::vector<AnomalyReport> *anomalyReport) : Command(&dio,sad,anomalyReport) {
+        description = "6.exit";
+    }
+    void execute() override {
+
+    }
+};
+
 
 
 
