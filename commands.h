@@ -38,6 +38,7 @@ protected:
     DefaultIO *dio;
     SimpleAnomalyDetector *sad;
     std::vector<AnomalyReport> *anomalyReport;
+    int linesNumber;
 
 public:
     Command(DefaultIO *dio) : dio(dio) {}
@@ -63,11 +64,13 @@ class uploadCommand : public Command {
             line = dio->read();
         }
         dio->write("Upload complete");
+        csv.close();
     }
 
 public:
     uploadCommand(DefaultIO dio) : Command(&dio) {
-        description = "1. upload a time series csv file";
+        description = "1.upload a time series csv file";
+
     };
 
     void execute() override {
@@ -79,7 +82,7 @@ public:
 class settingsCommand : public Command {
 public:
     settingsCommand(DefaultIO dio) : Command(&dio) {
-        description = "2. algorithm settings";
+        description = "2.algorithm settings";
     };
 
     void execute() override {
@@ -98,12 +101,13 @@ public:
 class detectCommand : public Command {
 public:
     detectCommand(DefaultIO dio) : Command(&dio) {
-        description = "3. detect anomalies";
+        description = "3.detect anomalies";
     };
 
     void execute() override {
         TimeSeries train("train.csv");
         TimeSeries test("test.csv");
+        linesNumber = test.getNumOfValues();
         sad->learnNormal(train);
         *anomalyReport = sad->detect(test);
         dio->write("anomaly detection complete");
@@ -113,15 +117,61 @@ public:
 class resultsCommand : public Command {
 public:
     resultsCommand(DefaultIO dio) : Command(&dio) {
-        description = "4. display results";
+        description = "4.display results";
     };
 
 
     void execute() override {
-        for(AnomalyReport report:*anomalyReport){
-            dio->write(std::to_string(report.timeStep)+"\t"+  report.description);
+        for (AnomalyReport report: *anomalyReport) {
+            dio->write(std::to_string(report.timeStep) + "\t" + report.description);
         }
         dio->write("done");
+    }
+};
+
+class analyzeCommand : public Command {
+public:
+    analyzeCommand(DefaultIO dio) : Command(&dio) {
+        description = "5.upload anomalies and analyze results";
+    };
+
+    void execute() override {
+        dio->write("Please upload your local anomalies file.");
+        int clientReporting = 0;
+        int positive = 0;
+        std::string line = dio->read();
+        size_t pos;
+        std::string delim = ",";
+
+        // the match reporting
+        float TP = 0;
+        float FP = 0;
+        while (line != "done") {
+            // the amount of reporting
+            positive++;
+
+
+            pos = line.find(delim);
+            int start = stoi(line.substr(0, pos));
+            line = line.erase(0, pos + 1);
+            int end = stoi(line);
+            clientReporting += end - start + 1;
+            bool isTrue = false;
+            for (const AnomalyReport& report: *anomalyReport) {
+                if (report.timeStep >= start || report.timeStep <= end) {
+                    isTrue = true;
+                    TP +=1;
+                    break;
+                }
+            }
+            if (!isTrue) {
+              FP += 1;
+            }
+            line = dio->read();
+        }
+        dio->write("Upload complete");
+        dio->write("True Positive Rate: " + std::to_string(TP/positive));
+        dio->write("True Positive Rate: " + std::to_string(FP/linesNumber-clientReporting));
     }
 };
 
