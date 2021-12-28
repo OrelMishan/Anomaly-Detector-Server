@@ -118,6 +118,9 @@ public:
         TimeSeries test("test.csv");
         *linesNumber = test.getNumOfValues();
         sad->learnNormal(train);
+        for (correlatedFeatures c : sad->getNormalModel()) {
+            cout<<c.feature1 +"\t"+c.feature2+"\n";
+        }
         *anomalyReport = sad->detect(test);
         dio->write("anomaly detection complete.\n");
     }
@@ -182,7 +185,7 @@ public:
         dio->write("Upload complete.\n");
         dio->write("True Positive Rate: ");
         dio->write(TP / positive);
-        dio->write("\nTrue Positive Rate: ");
+        dio->write("\nFalse Positive Rate: ");
         dio->write(FP / *linesNumber - clientReporting);
         dio->write("\n");
     }
