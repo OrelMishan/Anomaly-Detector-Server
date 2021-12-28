@@ -1,13 +1,16 @@
 #include "CLI.h"
 
 CLI::CLI(DefaultIO *dio) {
-    HybridAnomalyDetector sad;
-    arrayCommand[0] = new uploadCommand(dio, &sad, anomalyReport, linesNumber);
-    arrayCommand[1] = new settingsCommand(dio, &sad, anomalyReport, linesNumber);
-    arrayCommand[2] = new detectCommand(dio, &sad, anomalyReport, linesNumber);
-    arrayCommand[3] = new resultsCommand(dio, &sad, anomalyReport, linesNumber);
-    arrayCommand[4] = new analyzeCommand(dio, &sad, anomalyReport, linesNumber);
-    arrayCommand[5] = new exitCommand(dio, &sad, anomalyReport, linesNumber);
+    this->dio = dio;
+    sad = new HybridAnomalyDetector;
+    anomalyReport = new std::vector<AnomalyReport>;
+    linesNumber = new int;
+    arrayCommand[0] = new uploadCommand(dio, sad, anomalyReport, linesNumber);
+    arrayCommand[1] = new settingsCommand(dio, sad, anomalyReport, linesNumber);
+    arrayCommand[2] = new detectCommand(dio, sad, anomalyReport, linesNumber);
+    arrayCommand[3] = new resultsCommand(dio, sad, anomalyReport, linesNumber);
+    arrayCommand[4] = new analyzeCommand(dio, sad, anomalyReport, linesNumber);
+    arrayCommand[5] = new exitCommand(dio, sad, anomalyReport, linesNumber);
 
 }
 
@@ -20,8 +23,9 @@ void CLI::start() {
         }
 
         dio->read(&choose);
+
         arrayCommand[(int) choose - 1]->execute();
-        if (choose == 0) {
+        if (choose == 6) {
             break;
         }
     }

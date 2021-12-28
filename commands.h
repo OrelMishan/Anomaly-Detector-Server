@@ -53,7 +53,7 @@ public:
 
 class uploadCommand : public Command {
     void getFile(std::string readType) {
-        dio->write("Please upload your local " + readType + "file.");
+        dio->write("Please upload your local " + readType + " CSV file.\n");
         std::ifstream fin;
         std::string line;
         ofstream csv(readType + ".csv");
@@ -62,7 +62,7 @@ class uploadCommand : public Command {
             csv << line << endl;
             line = dio->read();
         }
-        dio->write("Upload complete");
+        dio->write("Upload complete.\n");
         csv.close();
     }
 
@@ -88,11 +88,17 @@ public:
 
     void execute() override {
         float newThreshold;
-        dio->write("the current correlation threshold is" + std::to_string(sad->getThreshold()));
+        dio->write("The current correlation threshold is ");
+        dio->write(sad->getThreshold());
+        dio->write("\n");
+        dio->write("Type a new threshold\n");
         dio->read(&newThreshold);
+
         while (newThreshold < 0 || newThreshold > 1) {
-            dio->write("please choose a value between 0 and 1");
-            dio->write("the current correlation threshold is" + std::to_string(sad->getThreshold()));
+            dio->write("please choose a value between 0 and 1\n");
+            dio->write("The current correlation threshold is ");
+            dio->write(sad->getThreshold());
+            dio->write("\n");
             dio->read(&newThreshold);
         }
         sad->setThreshold(newThreshold);
@@ -113,7 +119,7 @@ public:
         *linesNumber = test.getNumOfValues();
         sad->learnNormal(train);
         *anomalyReport = sad->detect(test);
-        dio->write("anomaly detection complete");
+        dio->write("anomaly detection complete.\n");
     }
 };
 
@@ -127,9 +133,10 @@ public:
 
     void execute() override {
         for (const AnomalyReport &report: *anomalyReport) {
-            dio->write(std::to_string(report.timeStep) + "\t" + report.description);
+            dio->write(report.timeStep);
+            dio->write("\t" + report.description + "\n");
         }
-        dio->write("done");
+        dio->write("Done.\n");
     }
 };
 
@@ -141,7 +148,7 @@ public:
     };
 
     void execute() override {
-        dio->write("Please upload your local anomalies file.");
+        dio->write("Please upload your local anomalies file.\n");
         int clientReporting = 0;
         int positive = 0;
         std::string line = dio->read();
@@ -172,9 +179,12 @@ public:
             }
             line = dio->read();
         }
-        dio->write("Upload complete");
-        dio->write("True Positive Rate: " + std::to_string(TP / positive));
-        dio->write("True Positive Rate: " + std::to_string(FP / *linesNumber - clientReporting));
+        dio->write("Upload complete.\n");
+        dio->write("True Positive Rate: ");
+        dio->write(TP / positive);
+        dio->write("\nTrue Positive Rate: ");
+        dio->write(FP / *linesNumber - clientReporting);
+        dio->write("\n");
     }
 };
 

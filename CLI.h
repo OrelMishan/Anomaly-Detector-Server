@@ -8,6 +8,7 @@
 class CLI {
     DefaultIO *dio;
     Command* arrayCommand[6];
+    HybridAnomalyDetector* sad;
     vector<AnomalyReport> *anomalyReport;
     int *linesNumber;
 
