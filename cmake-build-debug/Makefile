@@ -47,19 +47,19 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2021.2.1\bin\cmake\win\bin\cmake.exe"
+CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2020.2.4\bin\cmake\win\bin\cmake.exe"
 
 # The command to remove a file.
-RM = "C:\Program Files\JetBrains\CLion 2021.2.1\bin\cmake\win\bin\cmake.exe" -E rm -f
+RM = "C:\Program Files\JetBrains\CLion 2020.2.4\bin\cmake\win\bin\cmake.exe" -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\user\CLionProjects\ass1
+CMAKE_SOURCE_DIR = C:\Users\Public\ass1
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\user\CLionProjects\ass1\cmake-build-debug
+CMAKE_BINARY_DIR = C:\Users\Public\ass1\cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -67,7 +67,7 @@ CMAKE_BINARY_DIR = C:\Users\user\CLionProjects\ass1\cmake-build-debug
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	"C:\Program Files\JetBrains\CLion 2021.2.1\bin\cmake\win\bin\cmake.exe" -E echo "No interactive CMake dialog available."
+	"C:\Program Files\JetBrains\CLion 2020.2.4\bin\cmake\win\bin\cmake.exe" -E echo "No interactive CMake dialog available."
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -77,7 +77,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	"C:\Program Files\JetBrains\CLion 2021.2.1\bin\cmake\win\bin\cmake.exe" --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	"C:\Program Files\JetBrains\CLion 2020.2.4\bin\cmake\win\bin\cmake.exe" --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -86,9 +86,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\user\CLionProjects\ass1\cmake-build-debug\CMakeFiles C:\Users\user\CLionProjects\ass1\cmake-build-debug\\CMakeFiles\progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Public\ass1\cmake-build-debug\CMakeFiles C:\Users\Public\ass1\cmake-build-debug\\CMakeFiles\progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\user\CLionProjects\ass1\cmake-build-debug\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Public\ass1\cmake-build-debug\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -224,6 +224,30 @@ SimpleAnomalyDetector.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\ass1.dir\build.make CMakeFiles/ass1.dir/SimpleAnomalyDetector.cpp.s
 .PHONY : SimpleAnomalyDetector.cpp.s
 
+TimeSeries.obj: TimeSeries.cpp.obj
+.PHONY : TimeSeries.obj
+
+# target to build an object file
+TimeSeries.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ass1.dir\build.make CMakeFiles/ass1.dir/TimeSeries.cpp.obj
+.PHONY : TimeSeries.cpp.obj
+
+TimeSeries.i: TimeSeries.cpp.i
+.PHONY : TimeSeries.i
+
+# target to preprocess a source file
+TimeSeries.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ass1.dir\build.make CMakeFiles/ass1.dir/TimeSeries.cpp.i
+.PHONY : TimeSeries.cpp.i
+
+TimeSeries.s: TimeSeries.cpp.s
+.PHONY : TimeSeries.s
+
+# target to generate assembly for a file
+TimeSeries.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ass1.dir\build.make CMakeFiles/ass1.dir/TimeSeries.cpp.s
+.PHONY : TimeSeries.cpp.s
+
 anomaly_detection_util.obj: anomaly_detection_util.cpp.obj
 .PHONY : anomaly_detection_util.obj
 
@@ -272,30 +296,6 @@ minCircle.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\ass1.dir\build.make CMakeFiles/ass1.dir/minCircle.cpp.s
 .PHONY : minCircle.cpp.s
 
-timeseries.obj: timeseries.cpp.obj
-.PHONY : timeseries.obj
-
-# target to build an object file
-timeseries.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ass1.dir\build.make CMakeFiles/ass1.dir/timeseries.cpp.obj
-.PHONY : timeseries.cpp.obj
-
-timeseries.i: timeseries.cpp.i
-.PHONY : timeseries.i
-
-# target to preprocess a source file
-timeseries.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ass1.dir\build.make CMakeFiles/ass1.dir/timeseries.cpp.i
-.PHONY : timeseries.cpp.i
-
-timeseries.s: timeseries.cpp.s
-.PHONY : timeseries.s
-
-# target to generate assembly for a file
-timeseries.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ass1.dir\build.make CMakeFiles/ass1.dir/timeseries.cpp.s
-.PHONY : timeseries.cpp.s
-
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -317,15 +317,15 @@ help:
 	@echo ... SimpleAnomalyDetector.obj
 	@echo ... SimpleAnomalyDetector.i
 	@echo ... SimpleAnomalyDetector.s
+	@echo ... TimeSeries.obj
+	@echo ... TimeSeries.i
+	@echo ... TimeSeries.s
 	@echo ... anomaly_detection_util.obj
 	@echo ... anomaly_detection_util.i
 	@echo ... anomaly_detection_util.s
 	@echo ... minCircle.obj
 	@echo ... minCircle.i
 	@echo ... minCircle.s
-	@echo ... timeseries.obj
-	@echo ... timeseries.i
-	@echo ... timeseries.s
 .PHONY : help
 
 

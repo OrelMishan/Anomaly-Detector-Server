@@ -4,26 +4,23 @@
 #define COMMANDS_H_
 
 #include<iostream>
-#include <string.h>
-# include <filesystem>
+#include <string>
 #include <fstream>
 #include <vector>
 #include "HybridAnomalyDetector.h"
-
-using namespace std;
 
 
 class DefaultIO {
 public:
     virtual string read() = 0;
 
-    virtual void write(string text) = 0;
+    virtual void write(std::string text) = 0;
 
     virtual void write(float f) = 0;
 
     virtual void read(float *f) = 0;
 
-    virtual ~DefaultIO() {}
+    virtual ~DefaultIO() = default;
 
     // you may add additional methods here
 };
@@ -38,12 +35,13 @@ protected:
     DefaultIO *dio;
     SimpleAnomalyDetector *sad;
     std::vector<AnomalyReport> *anomalyReport;
-    int linesNumber;
+    int *linesNumber;
 
 
 public:
-    Command(DefaultIO *dio, SimpleAnomalyDetector *sad, std::vector<AnomalyReport> *anomalyReport) : dio(dio), sad(sad),
-                                                                                                     anomalyReport(anomalyReport) {}
+    Command(DefaultIO *dio, SimpleAnomalyDetector *sad, std::vector<AnomalyReport> *anomalyReport, int *linesNumber) :
+            dio(dio), sad(sad), anomalyReport(anomalyReport), linesNumber(linesNumber) {}
+
     virtual void execute() = 0;
 
     virtual ~Command() {}
@@ -69,9 +67,8 @@ class uploadCommand : public Command {
     }
 
 public:
-    uploadCommand(DefaultIO *dio, SimpleAnomalyDetector *sad, vector<AnomalyReport> anomalyReport) : Command(&dio,
-                                                                                                             sad,
-                                                                                                             anomalyReport) {
+    uploadCommand(DefaultIO *dio, SimpleAnomalyDetector *sad, std::vector<AnomalyReport> *anomalyReport,
+                  int *linesNumber) : Command(dio, sad, anomalyReport, linesNumber) {
         description = "1.upload a time series csv file";
     };
 
@@ -83,8 +80,8 @@ public:
 
 class settingsCommand : public Command {
 public:
-    settingsCommand(DefaultIO dio, SimpleAnomalyDetector *sad, std::vector<AnomalyReport> *anomalyReport) : Command(
-            &dio, sad, anomalyReport) {
+    settingsCommand(DefaultIO *dio, SimpleAnomalyDetector *sad, std::vector<AnomalyReport> *anomalyReport,
+                    int *linesNumber) : Command(dio, sad, anomalyReport, linesNumber) {
         description = "2.algorithm settings";
 
     };
@@ -104,7 +101,8 @@ public:
 
 class detectCommand : public Command {
 public:
-    detectCommand(DefaultIO dio, SimpleAnomalyDetector *sad, std::vector<AnomalyReport> *anomalyReport) : Command(&dio,sad,anomalyReport) {
+    detectCommand(DefaultIO *dio, SimpleAnomalyDetector *sad, std::vector<AnomalyReport> *anomalyReport,
+                  int *linesNumber) : Command(dio, sad, anomalyReport, linesNumber) {
         description = "3.detect anomalies";
     }
 
@@ -112,7 +110,7 @@ public:
     void execute() override {
         TimeSeries train("train.csv");
         TimeSeries test("test.csv");
-        linesNumber = test.getNumOfValues();
+        *linesNumber = test.getNumOfValues();
         sad->learnNormal(train);
         *anomalyReport = sad->detect(test);
         dio->write("anomaly detection complete");
@@ -121,13 +119,14 @@ public:
 
 class resultsCommand : public Command {
 public:
-    resultsCommand(DefaultIO dio, SimpleAnomalyDetector *sad, std::vector<AnomalyReport> *anomalyReport) : Command(&dio,sad,anomalyReport){
+    resultsCommand(DefaultIO *dio, SimpleAnomalyDetector *sad, std::vector<AnomalyReport> *anomalyReport,
+                   int *linesNumber) : Command(dio, sad, anomalyReport, linesNumber) {
         description = "4.display results";
     }
 
 
     void execute() override {
-        for (const AnomalyReport& report: *anomalyReport) {
+        for (const AnomalyReport &report: *anomalyReport) {
             dio->write(std::to_string(report.timeStep) + "\t" + report.description);
         }
         dio->write("done");
@@ -136,7 +135,8 @@ public:
 
 class analyzeCommand : public Command {
 public:
-    analyzeCommand(DefaultIO dio, SimpleAnomalyDetector *sad, std::vector<AnomalyReport> *anomalyReport) : Command(&dio,sad,anomalyReport){
+    analyzeCommand(DefaultIO *dio, SimpleAnomalyDetector *sad, std::vector<AnomalyReport> *anomalyReport,
+                   int *linesNumber) : Command(dio, sad, anomalyReport, linesNumber) {
         description = "5.upload anomalies and analyze results";
     };
 
@@ -154,8 +154,6 @@ public:
         while (line != "done") {
             // the amount of reporting
             positive++;
-
-
             pos = line.find(delim);
             int start = stoi(line.substr(0, pos));
             line = line.erase(0, pos + 1);
@@ -176,18 +174,18 @@ public:
         }
         dio->write("Upload complete");
         dio->write("True Positive Rate: " + std::to_string(TP / positive));
-        dio->write("True Positive Rate: " + std::to_string(FP / linesNumber - clientReporting));
+        dio->write("True Positive Rate: " + std::to_string(FP / *linesNumber - clientReporting));
     }
 };
 
 class exitCommand : public Command {
 public:
-    exitCommand(DefaultIO dio, SimpleAnomalyDetector *sad, std::vector<AnomalyReport> *anomalyReport) : Command(&dio,sad,anomalyReport) {
+    exitCommand(DefaultIO *dio, SimpleAnomalyDetector *sad, std::vector<AnomalyReport> *anomalyReport, int *linesNumber)
+            : Command(dio, sad, anomalyReport, linesNumber) {
         description = "6.exit";
     }
-    void execute() override {
-        exit(0);
-    }
+
+    void execute() override {}
 };
 
 
