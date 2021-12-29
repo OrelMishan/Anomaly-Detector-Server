@@ -118,9 +118,6 @@ public:
         TimeSeries test("test.csv");
         *linesNumber = test.getNumOfValues();
         sad->learnNormal(train);
-        for (correlatedFeatures c : sad->getNormalModel()) {
-            cout<<c.feature1 +"\t"+c.feature2+"\n";
-        }
         *anomalyReport = sad->detect(test);
         dio->write("anomaly detection complete.\n");
     }
@@ -135,15 +132,34 @@ public:
 
 
     void execute() override {
-        for (const AnomalyReport &report: *anomalyReport) {
-            dio->write(report.timeStep);
-            dio->write("\t" + report.description + "\n");
+        for (correlatedFeatures c: sad->getNormalModel()) {
+            for (const AnomalyReport &report: *anomalyReport) {
+                if (report.description == c.feature1 + "-" + c.feature2) {
+                    dio->write(report.timeStep);
+                    dio->write("\t" + report.description + "\n");
+                }
+            }
         }
         dio->write("Done.\n");
     }
 };
 
 class analyzeCommand : public Command {
+    int getTimeFrames() {
+        int count = 1;
+        int numReports = anomalyReport->size() ;
+        int i;
+        for ( i = 2; i <numReports; i++) {
+            if (anomalyReport->at(i-1).timeStep + 1 != anomalyReport->at(i).timeStep) {
+                count++;
+            }
+        }
+        if (anomalyReport->at(0).timeStep + 1 != anomalyReport->at( 1).timeStep) {
+            count++;
+        }
+        return count;
+    }
+
 public:
     analyzeCommand(DefaultIO *dio, SimpleAnomalyDetector *sad, std::vector<AnomalyReport> *anomalyReport,
                    int *linesNumber) : Command(dio, sad, anomalyReport, linesNumber) {
@@ -160,7 +176,8 @@ public:
 
         // the match reporting
         float TP = 0;
-        float FP = 0;
+        float FP = getTimeFrames();
+
         while (line != "done") {
             // the amount of reporting
             positive++;
@@ -169,24 +186,26 @@ public:
             line = line.erase(0, pos + 1);
             int end = stoi(line);
             clientReporting += end - start + 1;
-            bool isTrue = false;
-            for (const AnomalyReport &report: *anomalyReport) {
-                if (report.timeStep >= start || report.timeStep <= end) {
-                    isTrue = true;
-                    TP += 1;
-                    break;
+            int count = 0;
+            int numReport = anomalyReport->size();
+            for (int i = 0; i < numReport; i++) {
+                if (anomalyReport->at(i).timeStep >= start && anomalyReport->at(i).timeStep <= end) {
+                        count++;
                 }
             }
-            if (!isTrue) {
-                FP += 1;
+            if (count) {
+                TP++;
+                FP--;
             }
+
             line = dio->read();
         }
         dio->write("Upload complete.\n");
         dio->write("True Positive Rate: ");
         dio->write(TP / positive);
         dio->write("\nFalse Positive Rate: ");
-        dio->write(FP / *linesNumber - clientReporting);
+
+        dio->write((int)(1000.0*FP/(float )(*linesNumber-clientReporting))/1000.0f);
         dio->write("\n");
     }
 };

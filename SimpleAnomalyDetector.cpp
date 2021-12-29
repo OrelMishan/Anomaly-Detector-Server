@@ -136,7 +136,7 @@ void SimpleAnomalyDetector::learnNormal(const TimeSeries &ts) {
     for (int i = 0; i < ts.getTable().size(); i++) {
         // initializing the corr and the match subject
         int matcher = 0;
-        float corrlation = 0.9;
+        float corrlation = 0.5;
         float *x = fArr[i];
 
         // for loop for the matcher subject
