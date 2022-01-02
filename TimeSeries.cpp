@@ -4,7 +4,7 @@
 #include <fstream>
 #include <vector>
 #include <iostream>
-#include "timeseries.h"
+#include "TimeSeries.h"
 
 void TimeSeries::putKeys(std::string line) {
 
