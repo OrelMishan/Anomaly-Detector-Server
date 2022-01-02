@@ -1,3 +1,5 @@
+//Name: Noam Tzuberi ID:313374837
+//Name: Orel Mishan ID:316551092
 #include "CLI.h"
 
 CLI::CLI(DefaultIO *dio) {
@@ -34,6 +36,12 @@ void CLI::start() {
 
 
 CLI::~CLI() {
-
+    delete sad;
+    delete anomalyReport;
+    delete linesNumber;
+    for (Command *c :arrayCommand){
+        delete c;
+    }
+    delete this;
 }
 
