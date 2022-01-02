@@ -42,6 +42,6 @@ CLI::~CLI() {
     for (Command *c :arrayCommand){
         delete c;
     }
-    delete this;
+
 }
 
