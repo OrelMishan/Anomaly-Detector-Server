@@ -8,20 +8,19 @@
 #ifndef SERVER_H_
 #define SERVER_H_
 
-#include <pthread.h>
-#include <thread>
 #include <sys/socket.h>
 #include <netinet/in.h>
+#include <pthread.h>
+#include <thread>
 
-using namespace std;
-
-struct sockAddress{
+struct sockAddress {
     uint8_t sin_len;
     sa_family_t family;
     in_port_t port;
     struct in_addr address;
     char sin_zero[8];
 };
+
 // edit your ClientHandler interface here:
 class ClientHandler {
 public:
@@ -44,11 +43,11 @@ public:
 
 // implement on Server.cpp
 class Server {
-    thread *t; // the thread to run the start() method in
+    std::thread *t; // the thread to run the start() method in
     int fileDis;
     sockAddress server;
     sockAddress client;
-    bool isStop= false;
+    bool isStop = false;
     // you may add data members
 
 public:

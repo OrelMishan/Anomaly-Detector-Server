@@ -20,8 +20,9 @@ Server::Server(int port) throw(const char *) {
 }
 
 void Server::start(ClientHandler &ch) throw(const char *) {
-    t = new thread([&ch, this]() {
-    //add time out to accept
+    t = new std::thread([&ch, this]() {
+        //add time out to accept
+        alarm(5);
         while (!isStop) {
             socklen_t clintSize = sizeof(client);
             int clientNum = accept(fileDis, (struct sockaddr *) &client, &clintSize);
@@ -40,5 +41,6 @@ void Server::stop() {
 }
 
 Server::~Server() {
+    delete t;
 }
 
