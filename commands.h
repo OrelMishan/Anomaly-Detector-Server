@@ -115,8 +115,8 @@ public:
 
 
     void execute() override {
-        timeseries train("train.csv");
-        timeseries test("test.csv");
+        TimeSeries train("train.csv");
+        TimeSeries test("test.csv");
         *linesNumber = test.getNumOfValues();
         sad->learnNormal(train);
         *anomalyReport = sad->detect(test);

@@ -9,7 +9,7 @@ float SimpleAnomalyDetector::findDev(Point p,correlatedFeatures cor){
     return dev(p, cor.lin_reg);
 
 }
-std::vector<AnomalyReport> SimpleAnomalyDetector::detect(const timeseries &ts) {
+std::vector<AnomalyReport> SimpleAnomalyDetector::detect(const TimeSeries &ts) {
     // the vector that return the anomaly report
     std::vector<AnomalyReport> report;
 
@@ -106,7 +106,7 @@ correlatedFeatures creatingCorrelationStruct(std::string firstName, std::string 
     return a;
 
 }
-void SimpleAnomalyDetector::isCorr(const timeseries &ts, float **fArr, int i, int matcher, float corrlation){
+void SimpleAnomalyDetector::isCorr(const TimeSeries &ts, float **fArr, int i, int matcher, float corrlation){
     if (corrlation >= 0.9) {
         Line the_line = lin_reg(fArr[i], fArr[matcher],
                                 ts.getNumOfValues());
@@ -128,7 +128,7 @@ Line SimpleAnomalyDetector::lin_reg(float *first, float *sec, int size) {
     delete[]arrPoints;
     return lin_reg;
 }
-void SimpleAnomalyDetector::learnNormal(const timeseries &ts) {
+void SimpleAnomalyDetector::learnNormal(const TimeSeries &ts) {
     //get floats arrays of the values of ts
     float **fArr = ts.getFloatArrays();
 
