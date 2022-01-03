@@ -93,14 +93,18 @@ public:
         dio->write(sad->getThreshold());
         dio->write("\n");
         dio->write("Type a new threshold\n");
-        dio->read(&newThreshold);
+        cout<<"read1"<<endl;
+        newThreshold = atof(dio->read().c_str());
+        cout<<"read";
+        // dio->read(&newThreshold);
 
         while (newThreshold < 0 || newThreshold > 1) {
             dio->write("please choose a value between 0 and 1\n");
             dio->write("The current correlation threshold is ");
             dio->write(sad->getThreshold());
             dio->write("\n");
-            dio->read(&newThreshold);
+            newThreshold = atof(dio->read().c_str());
+//            dio->read(&newThreshold);
         }
         sad->setThreshold(newThreshold);
     }

@@ -17,17 +17,16 @@ CLI::CLI(DefaultIO *dio) {
 }
 
 void CLI::start() {
-    float choose;
+    string choose;
     while (true) {
         dio->write("Welcome to the Anomaly Detection Server.\nPlease choose an option:\n");
         for (Command *command: arrayCommand) {
             dio->write(command->getDescription() + "\n");
         }
-
-        dio->read(&choose);
-
-        arrayCommand[(int) choose - 1]->execute();
-        if (choose == 6) {
+        choose=dio->read();
+        int com = atoi(choose.c_str());
+        arrayCommand[com - 1]->execute();
+        if (com == 6) {
             break;
         }
     }

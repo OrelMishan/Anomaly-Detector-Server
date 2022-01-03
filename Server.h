@@ -42,7 +42,7 @@ public:
     }
 
     virtual void read(float *f) {
-        recv(clientNum, f, sizeof *f, 0);
+        recv(clientNum, f, sizeof(float), 0);
     }
 };
 
@@ -72,8 +72,8 @@ public:
 class Server {
     std::thread *t; // the thread to run the start() method in
     int fileDis;
-    sockAddress server;
-    sockAddress client;
+    sockaddr_in server;
+    sockaddr_in client;
     bool isStop = false;
     // you may add data members
 

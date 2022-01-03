@@ -5,7 +5,7 @@
 #ifndef ASS1_ANOMALYDETECTOR_H
 #define ASS1_ANOMALYDETECTOR_H
 
-#include "TimeSeries.h"
+#include "timeseries.h"
 #include "string"
 
 class AnomalyReport {

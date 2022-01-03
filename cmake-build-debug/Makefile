@@ -249,30 +249,6 @@ SimpleAnomalyDetector.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ass1.dir/build.make CMakeFiles/ass1.dir/SimpleAnomalyDetector.cpp.s
 .PHONY : SimpleAnomalyDetector.cpp.s
 
-TimeSeries.o: TimeSeries.cpp.o
-.PHONY : TimeSeries.o
-
-# target to build an object file
-TimeSeries.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ass1.dir/build.make CMakeFiles/ass1.dir/TimeSeries.cpp.o
-.PHONY : TimeSeries.cpp.o
-
-TimeSeries.i: TimeSeries.cpp.i
-.PHONY : TimeSeries.i
-
-# target to preprocess a source file
-TimeSeries.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ass1.dir/build.make CMakeFiles/ass1.dir/TimeSeries.cpp.i
-.PHONY : TimeSeries.cpp.i
-
-TimeSeries.s: TimeSeries.cpp.s
-.PHONY : TimeSeries.s
-
-# target to generate assembly for a file
-TimeSeries.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ass1.dir/build.make CMakeFiles/ass1.dir/TimeSeries.cpp.s
-.PHONY : TimeSeries.cpp.s
-
 anomaly_detection_util.o: anomaly_detection_util.cpp.o
 .PHONY : anomaly_detection_util.o
 
@@ -321,6 +297,30 @@ minCircle.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ass1.dir/build.make CMakeFiles/ass1.dir/minCircle.cpp.s
 .PHONY : minCircle.cpp.s
 
+timeseries.o: timeseries.cpp.o
+.PHONY : timeseries.o
+
+# target to build an object file
+timeseries.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ass1.dir/build.make CMakeFiles/ass1.dir/timeseries.cpp.o
+.PHONY : timeseries.cpp.o
+
+timeseries.i: timeseries.cpp.i
+.PHONY : timeseries.i
+
+# target to preprocess a source file
+timeseries.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ass1.dir/build.make CMakeFiles/ass1.dir/timeseries.cpp.i
+.PHONY : timeseries.cpp.i
+
+timeseries.s: timeseries.cpp.s
+.PHONY : timeseries.s
+
+# target to generate assembly for a file
+timeseries.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ass1.dir/build.make CMakeFiles/ass1.dir/timeseries.cpp.s
+.PHONY : timeseries.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -345,15 +345,15 @@ help:
 	@echo "... SimpleAnomalyDetector.o"
 	@echo "... SimpleAnomalyDetector.i"
 	@echo "... SimpleAnomalyDetector.s"
-	@echo "... TimeSeries.o"
-	@echo "... TimeSeries.i"
-	@echo "... TimeSeries.s"
 	@echo "... anomaly_detection_util.o"
 	@echo "... anomaly_detection_util.i"
 	@echo "... anomaly_detection_util.s"
 	@echo "... minCircle.o"
 	@echo "... minCircle.i"
 	@echo "... minCircle.s"
+	@echo "... timeseries.o"
+	@echo "... timeseries.i"
+	@echo "... timeseries.s"
 .PHONY : help
 
 

@@ -111,12 +111,6 @@
 		<Unit filename="/home/orel/CLionProjects/ass1/SimpleAnomalyDetector.h">
 			<Option target="ass1"/>
 		</Unit>
-		<Unit filename="/home/orel/CLionProjects/ass1/TimeSeries.cpp">
-			<Option target="ass1"/>
-		</Unit>
-		<Unit filename="/home/orel/CLionProjects/ass1/TimeSeries.h">
-			<Option target="ass1"/>
-		</Unit>
 		<Unit filename="/home/orel/CLionProjects/ass1/anomaly_detection_util.cpp">
 			<Option target="ass1"/>
 		</Unit>
@@ -130,6 +124,12 @@
 			<Option target="ass1"/>
 		</Unit>
 		<Unit filename="/home/orel/CLionProjects/ass1/minCircle.h">
+			<Option target="ass1"/>
+		</Unit>
+		<Unit filename="/home/orel/CLionProjects/ass1/timeseries.cpp">
+			<Option target="ass1"/>
+		</Unit>
+		<Unit filename="/home/orel/CLionProjects/ass1/timeseries.h">
 			<Option target="ass1"/>
 		</Unit>
 		<Unit filename="/home/orel/CLionProjects/ass1/CMakeLists.txt">

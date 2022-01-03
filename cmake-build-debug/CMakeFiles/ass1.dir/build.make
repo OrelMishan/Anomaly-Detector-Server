@@ -153,19 +153,19 @@ CMakeFiles/ass1.dir/CLI.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ass1.dir/CLI.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/orel/CLionProjects/ass1/CLI.cpp -o CMakeFiles/ass1.dir/CLI.cpp.s
 
-CMakeFiles/ass1.dir/TimeSeries.cpp.o: CMakeFiles/ass1.dir/flags.make
-CMakeFiles/ass1.dir/TimeSeries.cpp.o: ../TimeSeries.cpp
-CMakeFiles/ass1.dir/TimeSeries.cpp.o: CMakeFiles/ass1.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/orel/CLionProjects/ass1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/ass1.dir/TimeSeries.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ass1.dir/TimeSeries.cpp.o -MF CMakeFiles/ass1.dir/TimeSeries.cpp.o.d -o CMakeFiles/ass1.dir/TimeSeries.cpp.o -c /home/orel/CLionProjects/ass1/TimeSeries.cpp
+CMakeFiles/ass1.dir/timeseries.cpp.o: CMakeFiles/ass1.dir/flags.make
+CMakeFiles/ass1.dir/timeseries.cpp.o: ../timeseries.cpp
+CMakeFiles/ass1.dir/timeseries.cpp.o: CMakeFiles/ass1.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/orel/CLionProjects/ass1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/ass1.dir/timeseries.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ass1.dir/timeseries.cpp.o -MF CMakeFiles/ass1.dir/timeseries.cpp.o.d -o CMakeFiles/ass1.dir/timeseries.cpp.o -c /home/orel/CLionProjects/ass1/timeseries.cpp
 
-CMakeFiles/ass1.dir/TimeSeries.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ass1.dir/TimeSeries.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/orel/CLionProjects/ass1/TimeSeries.cpp > CMakeFiles/ass1.dir/TimeSeries.cpp.i
+CMakeFiles/ass1.dir/timeseries.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ass1.dir/timeseries.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/orel/CLionProjects/ass1/timeseries.cpp > CMakeFiles/ass1.dir/timeseries.cpp.i
 
-CMakeFiles/ass1.dir/TimeSeries.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ass1.dir/TimeSeries.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/orel/CLionProjects/ass1/TimeSeries.cpp -o CMakeFiles/ass1.dir/TimeSeries.cpp.s
+CMakeFiles/ass1.dir/timeseries.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ass1.dir/timeseries.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/orel/CLionProjects/ass1/timeseries.cpp -o CMakeFiles/ass1.dir/timeseries.cpp.s
 
 CMakeFiles/ass1.dir/Server.cpp.o: CMakeFiles/ass1.dir/flags.make
 CMakeFiles/ass1.dir/Server.cpp.o: ../Server.cpp
@@ -189,7 +189,7 @@ ass1_OBJECTS = \
 "CMakeFiles/ass1.dir/HybridAnomalyDetector.cpp.o" \
 "CMakeFiles/ass1.dir/minCircle.cpp.o" \
 "CMakeFiles/ass1.dir/CLI.cpp.o" \
-"CMakeFiles/ass1.dir/TimeSeries.cpp.o" \
+"CMakeFiles/ass1.dir/timeseries.cpp.o" \
 "CMakeFiles/ass1.dir/Server.cpp.o"
 
 # External object files for target ass1
@@ -201,7 +201,7 @@ ass1: CMakeFiles/ass1.dir/anomaly_detection_util.cpp.o
 ass1: CMakeFiles/ass1.dir/HybridAnomalyDetector.cpp.o
 ass1: CMakeFiles/ass1.dir/minCircle.cpp.o
 ass1: CMakeFiles/ass1.dir/CLI.cpp.o
-ass1: CMakeFiles/ass1.dir/TimeSeries.cpp.o
+ass1: CMakeFiles/ass1.dir/timeseries.cpp.o
 ass1: CMakeFiles/ass1.dir/Server.cpp.o
 ass1: CMakeFiles/ass1.dir/build.make
 ass1: CMakeFiles/ass1.dir/link.txt
