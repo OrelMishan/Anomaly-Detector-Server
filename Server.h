@@ -1,17 +1,14 @@
-/*
- * Server.h
- *
- *  Created on: Dec 13, 2020
- *      Author: Eli
- */
-
+//Name: Noam Tzuberi ID:313374837
+//Name: Orel Mishan ID:316551092
 #ifndef SERVER_H_
 #define SERVER_H_
 
+#include "CLI.h"
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <pthread.h>
 #include <thread>
+#include <cstring>
 
 struct sockAddress {
     uint8_t sin_len;
@@ -19,6 +16,34 @@ struct sockAddress {
     in_port_t port;
     struct in_addr address;
     char sin_zero[8];
+};
+
+class SocketIO : public DefaultIO {
+    int clientNum;
+public:
+    SocketIO(int clientNum) : clientNum(clientNum) {};
+
+    virtual string read() {
+        std::string data = "";
+        char input;
+        do {
+            int n = recv(clientNum, &input, sizeof(char), 0);
+            data += input;
+        } while (input != '\n');
+        return data;
+    }
+
+    virtual void write(std::string text) {
+        send(clientNum, text.c_str(), strlen(text.c_str()), 0);
+    }
+
+    virtual void write(float f) {
+        send(clientNum, &f, sizeof f, 0);
+    }
+
+    virtual void read(float *f) {
+        recv(clientNum, f, sizeof *f, 0);
+    }
 };
 
 // edit your ClientHandler interface here:
@@ -36,7 +61,9 @@ public:
 class AnomalyDetectionHandler : public ClientHandler {
 public:
     virtual void handle(int clientID) {
-
+        SocketIO s(clientID);
+        CLI cli(&s);
+        cli.start();
     }
 };
 

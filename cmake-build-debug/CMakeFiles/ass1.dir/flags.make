@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/home/orel/CLionProjects/ass1/.
 
-CXX_FLAGS = -g -std=gnu++14
+CXX_FLAGS =  -std=c++11 -pthread -g -std=gnu++14
 

@@ -1,4 +1,5 @@
-
+//Name: Noam Tzuberi ID:313374837
+//Name: Orel Mishan ID:316551092
 #include <unistd.h>
 #include "Server.h"
 
@@ -43,4 +44,6 @@ void Server::stop() {
 Server::~Server() {
     delete t;
 }
+
+
 
