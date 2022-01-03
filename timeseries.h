@@ -7,7 +7,7 @@
 #include <vector>
 #include <string>
 
-class TimeSeries {
+class timeseries {
     std::vector<std::vector<std::string>> table;
 
     void putKeys(std::string line);
@@ -15,7 +15,7 @@ class TimeSeries {
     void putValues(std::string line);
 
 public:
-    explicit TimeSeries(const std::string &);
+    explicit timeseries(const std::string &);
 
 //    void printTable();
     std::vector<std::vector<std::string>> getTable() const;

@@ -24,7 +24,7 @@ protected:
     float lineTreshold =0.9;
     std::vector<correlatedFeatures> data;
     std::map<std::string, int> nameToNum;
-    virtual void isCorr(const TimeSeries &ts,float **fArr,int i,int matcher, float corrlation);
+    virtual void isCorr(const timeseries &ts, float **fArr, int i, int matcher, float corrlation);
     Line lin_reg(float *first, float *sec, int size);
     virtual float findDev(Point p,correlatedFeatures cor);
     Point **points(float *x, float *y, int size);
@@ -34,9 +34,9 @@ public:
 
     virtual ~SimpleAnomalyDetector() = default;
 
-    virtual void learnNormal(const TimeSeries &ts);
+    virtual void learnNormal(const timeseries &ts);
 
-    virtual std::vector<AnomalyReport> detect(const TimeSeries &ts);
+    virtual std::vector<AnomalyReport> detect(const timeseries &ts);
     void setThreshold(float currentCorr);
     float getThreshold() const;
     std::vector<correlatedFeatures> getNormalModel();

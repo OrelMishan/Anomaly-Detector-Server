@@ -20,7 +20,7 @@ add_executable(ass1
         commands.h
         CLI.h
         CLI.cpp
-        TimeSeries.cpp
-        TimeSeries.h
+        timeseries.cpp
+        timeseries.h
         Server.cpp
         Server.h)

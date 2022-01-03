@@ -4,9 +4,9 @@
 #include <fstream>
 #include <vector>
 #include <iostream>
-#include "TimeSeries.h"
+#include "timeseries.h"
 
-void TimeSeries::putKeys(std::string line) {
+void timeseries::putKeys(std::string line) {
 
     // tmp- the name of current column
     std::string tmp;
@@ -42,7 +42,7 @@ void TimeSeries::putKeys(std::string line) {
     }
 }
 
-void TimeSeries::putValues(std::string line) {
+void timeseries::putValues(std::string line) {
 
     // taking the numbers(values) as string
     std::string tmp;
@@ -68,7 +68,7 @@ void TimeSeries::putValues(std::string line) {
 
 }
 
-TimeSeries::TimeSeries(const std::string &path) {
+timeseries::timeseries(const std::string &path) {
 
     // define file, line
     std::ifstream fin;
@@ -92,7 +92,7 @@ TimeSeries::TimeSeries(const std::string &path) {
     fin.close();
 }
 
-std::vector<std::vector<std::string>> TimeSeries::getTable() const {
+std::vector<std::vector<std::string>> timeseries::getTable() const {
     return table;
 }
 
@@ -107,7 +107,7 @@ float *phraseToFloat(std::vector<std::string> vec) {
     return arr;
 }
 
-float ** TimeSeries::getFloatArrays() const {
+float ** timeseries::getFloatArrays() const {
     // create arrays of float
     float**arr = new float*[table.size()];
 
@@ -120,12 +120,12 @@ float ** TimeSeries::getFloatArrays() const {
     return arr;
 }
 
-int TimeSeries::getNumOfValues() const{
+int timeseries::getNumOfValues() const{
     // the number of the vectors- the length of the column
     return table[0].size()-1;
 }
 
-std::string TimeSeries::getName(int i) const {
+std::string timeseries::getName(int i) const {
     // the name of the column
     return table.at(i).at(0);
 }
