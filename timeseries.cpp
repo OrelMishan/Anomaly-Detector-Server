@@ -102,7 +102,7 @@ float *phraseToFloat(std::vector<std::string> vec) {
 
     //loop for all the values
     for (int i = 1; i < vec.size(); i++) {
-        arr[i - 1] = std::stof(vec[i]);
+        arr[i - 1] = atof(vec[i].c_str());
     }
     return arr;
 }

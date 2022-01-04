@@ -59,7 +59,7 @@ class uploadCommand : public Command {
         std::string line;
         ofstream csv(readType + ".csv");
         line = dio->read();
-        while (line != "done") {
+        while (line != "done\n") {
             csv << line << endl;
             line = dio->read();
         }
@@ -93,9 +93,9 @@ public:
         dio->write(sad->getThreshold());
         dio->write("\n");
         dio->write("Type a new threshold\n");
-        cout<<"read1"<<endl;
+        cout << "read1" << endl;
         newThreshold = atof(dio->read().c_str());
-        cout<<"read";
+        cout << "read";
         // dio->read(&newThreshold);
 
         while (newThreshold < 0 || newThreshold > 1) {
@@ -152,14 +152,14 @@ public:
 class analyzeCommand : public Command {
     int getTimeFrames() {
         int count = 1;
-        int numReports = anomalyReport->size() ;
+        int numReports = anomalyReport->size();
         int i;
-        for ( i = 2; i <numReports; i++) {
-            if (anomalyReport->at(i-1).timeStep + 1 != anomalyReport->at(i).timeStep) {
+        for (i = 2; i < numReports; i++) {
+            if (anomalyReport->at(i - 1).timeStep + 1 != anomalyReport->at(i).timeStep) {
                 count++;
             }
         }
-        if (anomalyReport->at(0).timeStep + 1 != anomalyReport->at( 1).timeStep) {
+        if (anomalyReport->at(0).timeStep + 1 != anomalyReport->at(1).timeStep) {
             count++;
         }
         return count;
@@ -187,15 +187,15 @@ public:
             // the amount of reporting
             positive++;
             pos = line.find(delim);
-            int start = stoi(line.substr(0, pos));
+            int start = atoi(line.substr(0, pos).c_str());
             line = line.erase(0, pos + 1);
-            int end = stoi(line);
+            int end = atoi(line.c_str());
             clientReporting += end - start + 1;
             int count = 0;
             int numReport = anomalyReport->size();
             for (int i = 0; i < numReport; i++) {
                 if (anomalyReport->at(i).timeStep >= start && anomalyReport->at(i).timeStep <= end) {
-                        count++;
+                    count++;
                 }
             }
             if (count) {
@@ -210,7 +210,7 @@ public:
         dio->write(TP / positive);
         dio->write("\nFalse Positive Rate: ");
 
-        dio->write((int)(1000.0*FP/(float )(*linesNumber-clientReporting))/1000.0f);
+        dio->write((int) (1000.0 * FP / (float) (*linesNumber - clientReporting)) / 1000.0f);
         dio->write("\n");
     }
 };
