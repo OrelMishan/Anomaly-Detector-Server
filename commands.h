@@ -60,7 +60,7 @@ class uploadCommand : public Command {
         ofstream csv(readType + ".csv");
         line = dio->read();
         while (line != "done\n") {
-            csv << line << endl;
+            csv << line;
             line = dio->read();
         }
         dio->write("Upload complete.\n");
@@ -183,13 +183,13 @@ public:
         float TP = 0;
         float FP = getTimeFrames();
 
-        while (line != "done") {
+        while (line != "done\n") {
             // the amount of reporting
             positive++;
             pos = line.find(delim);
-            int start = atoi(line.substr(0, pos).c_str());
+            int start = stoi(line.substr(0, pos));
             line = line.erase(0, pos + 1);
-            int end = atoi(line.c_str());
+            int end = stoi(line);
             clientReporting += end - start + 1;
             int count = 0;
             int numReport = anomalyReport->size();

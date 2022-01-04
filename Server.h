@@ -9,6 +9,8 @@
 #include <pthread.h>
 #include <thread>
 #include <cstring>
+#include <sstream>
+
 
 struct sockAddress {
     uint8_t sin_len;
@@ -38,7 +40,10 @@ public:
     }
 
     virtual void write(float f) {
-        send(clientNum, &f, sizeof f, 0);
+        std::ostringstream floatStr;
+        floatStr << f;
+        string s(floatStr.str());
+        write(s);
     }
 
     virtual void read(float *f) {

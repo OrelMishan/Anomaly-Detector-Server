@@ -22,21 +22,20 @@ Server::Server(int port) throw(const char *) {
 }
 
 void sigHandler(int sigNum) {
-    cout<<"sidH"<<endl;
+
 }
 
 void Server::start(ClientHandler &ch) throw(const char *) {
     t = new std::thread([&ch, this]() {
         //add time out to accept
-        signal(SIGALRM, sigHandler);
         while (!isStop) {
-            alarm(5);
             socklen_t clintSize = sizeof client;
             int clientNum = accept(fileDis, (struct sockaddr *) &client, &clintSize);
-            if (clientNum < 0)
-                throw "can't accept";
-            ch.handle(clientNum);
-            close(clientNum);
+            if (clientNum > 0) {
+                ch.handle(clientNum);
+                close(clientNum);
+            }
+
         }
         close(fileDis);
     });

@@ -16,8 +16,9 @@ std::vector<AnomalyReport> SimpleAnomalyDetector::detect(const TimeSeries &ts) {
     // creating the array of arrays of floats
     float **arr = ts.getFloatArrays();
 
+    int numValue = ts.getNumOfValues();
     // loop for the length of the arrays
-    for (int i = 0; i < ts.getNumOfValues(); ++i) {
+    for (int i = 0; i < numValue; ++i) {
 
         // loop for the cf
         for (const correlatedFeatures &cor: data) {

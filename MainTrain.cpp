@@ -88,19 +88,16 @@ void clientSide1(int port,string outputFile)throw (const char*){
 
 
 void clientSide2(int port,string outputFile)throw (const char*){
-    cout<<"in2"<<endl;
 	int serverFD = initClient(port);
 	
 	ofstream out(outputFile);
 	ifstream in("input.txt");
 	string input="";
 	while(input!="6"){
-        cout<<"in whhile"<<endl;
 		readMenue(out,serverFD);
 		getline(in,input);			
 		writeStr(input,serverFD);
 		if(input=="1"){
-            cout<<"in1"<<endl;
 			out<<readStr(serverFD)<<endl; // please upload...
 			while(input!="done"){
 				getline(in,input);
@@ -114,16 +111,12 @@ void clientSide2(int port,string outputFile)throw (const char*){
 				writeStr(input,serverFD);
 			}
 			out<<readStr(serverFD)<<endl; // Upload complete
-		    cout<<"end1"<<endl;
         }
 		
 		if(input=="3"){
-            cout<<"in3"<<endl;
 			out<<readStr(serverFD)<<endl; // Anomaly... complete
-            cout<<"end3"<<endl;
         }
 		if(input=="5"){
-            cout<<"in5"<<endl;
 			out<<readStr(serverFD)<<endl; // please upload...
 			while(input!="done"){
 				getline(in,input);
@@ -132,7 +125,6 @@ void clientSide2(int port,string outputFile)throw (const char*){
 			out<<readStr(serverFD)<<endl; // Upload complete
 			out<<readStr(serverFD)<<endl; // TPR
 			out<<readStr(serverFD)<<endl; // FPR
-            cout<<"end5"<<endl;
         }
 	}
 	in.close();	
@@ -169,6 +161,7 @@ int main(){
 	outputFile1+=".txt";
 	outputFile2+=to_string(x);
 	outputFile2+=".txt";
+    cout<<x<<endl;
 	
 	try{
 		AnomalyDetectionHandler adh;
